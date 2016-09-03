@@ -1,0 +1,72 @@
+<div ng-controller="PostsController as posts" class="row" ng-init="fetch_posts()">
+<!-- <div class="col s12 m4" ng-repeat='post in post_list track by $index'><div class="card sticky-action">
+  <div class="card-horizontal">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="images/a1.jpg">
+    </div>
+    <div class="card-stacked">
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{post.name}}<i class="material-icons right">more_vert</i>
+        <p>{{post.post}}</p>
+      </span>
+      <p><a href="#">Show More</a></p>
+    </div>
+    </div>
+  </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+    </div>
+  </div>
+</div>
+ -->
+ <style>
+    .card .card-action{
+      padding:0px;
+
+
+    }
+    .card .card-action input{
+      width:86%;
+      margin-bottom: 0px;
+      font-size: 1.3rem;
+    }
+    .card .card-action span .material-icons{
+      margin-left: 1.3rem;
+      margin-top:1rem;
+      cursor: pointer;
+    }
+    .card .comment-box .comment span{
+      display: block;
+      text-indent: -4rem;
+      margin-left: 5rem;
+    }
+    
+    .card .card-action span.comment-data{
+      max-height: 20px;
+      overflow: hidden;
+    }
+ </style>
+<div class="row">
+        <div class="col s12" ng-repeat="post in post_list track by $index">
+          <div class="card collection hoverable">
+            <div class="card-content black-text collection-item avatar">
+              <img src="images/a.jpg" alt="" class="circle">
+              <span >{{post.name}} > <a href="#/users/{{post.postedIn[0].id}}">{{post.postedIn[0].name}}</a></span>
+              <div class="post">
+                <p>{{post.post}}</p>
+              </div>
+            </div>
+            <div class="comment-box">
+              <div class="comment">
+              <span ><a href="">Amit PHulera </a> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga dolorum sequi tenetur accusamus vitae error optio nisi labore, voluptatibus aspernatur amet quos quaerat reprehenderit, quis, corporis ducimus. Dolorem, reiciendis, animi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque atque cumque optio praesentium perferendis quibusdam. Excepturi adipisci fugiat, deleniti nulla hic debitis voluptate sunt, ullam qui beatae suscipit autem aliquid.</span></div>
+              <div class="comment"><p>Amit PHulera :- This is anothercomment </p></div>
+            </div>
+            <div class="card-action">
+              <input type="text" style="width:80%;margin-bottom:0" ng-model="comment"><span><i class="small material-icons">send</i></span>
+            </div>
+          </div>
+        </div>
+
+</div>
+ </div>

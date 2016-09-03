@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DigiClubs</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/material-icons.css" />
+    <script src="http://localhost:8001/target/target-script-min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/app.min.js"></script>
+  </head>
+  <body ng-app="DigiClubs" ng-controller="MainController">
+
+    <!-- Sidebars -->
+    
+
+      <!-- Navbars -->
+      <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">DigiClubs</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">list</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#posts">Posts</a></li>
+            <li><a href="#clubs">Clubs</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li style="height:40px"></li>
+            
+            <li><a href="#posts">Posts</a></li>
+            <li><a href="#clubs">Clubs</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      </div>    
+
+      <!-- App Body -->
+      <div class="app-body">
+        <div class="app-content">
+          <ng-view></ng-view>  
+        </div>
+      </div>
+
+    </div><!-- ~ .app -->
+
+    
+  </body>
+</html>
