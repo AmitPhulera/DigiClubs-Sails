@@ -24,7 +24,7 @@ module.exports = {
 	    	type:'string',
 	    	enum: ['public','members', 'core']
 	    },
-	    postedIn:{
+	    clubs:{
 	    	model:'clubs',
 	    },
 	    reviews:{

@@ -33,11 +33,9 @@ module.exports = {
             type: 'object',
             defaultsTo: {}
         },
-        clubs:{
-            model:'clubs'
-        },
         roles:{
-            model:'roles'
+            collection:'roles',
+            via:'user_id'
         },
         toJSON: function () {
             var obj = this.toObject();

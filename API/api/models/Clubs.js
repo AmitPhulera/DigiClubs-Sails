@@ -28,10 +28,12 @@ module.exports = {
 			type:'integer',
 		},
 		events:{
-			model:'events',
+			collection:'events',
+			via:'clubs'
 		},
 	    role:{
-	    	collection:'roles'
+	    	collection:'roles',
+	    	via:'club'
 	    },
 	}
 };

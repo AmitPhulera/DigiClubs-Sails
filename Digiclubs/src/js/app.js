@@ -14,5 +14,6 @@ angular.module('DigiClubs', [
   	.when('/clubs', {templateUrl:'clubs.html',  reloadOnSearch: false})
   	.when('/events', {templateUrl:'events.html',  reloadOnSearch: false})
   	.when('/contact', {templateUrl:'contact.html',  reloadOnSearch: false})
-  	.when('/signup',{templateUrl:'signup.html',reloadOnSearch:false});
+  	.when('/clubs/:club_id', {templateUrl:'group_details.html',  reloadOnSearch: false})
+    .when('/signup',{templateUrl:'signup.html',reloadOnSearch:false});
 });

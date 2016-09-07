@@ -6,6 +6,10 @@
  */
 
 module.exports = {
-	
+	subscribe:function(req,res){
+		var club_id=req.param('clubId');
+		sails.sockets.join(req,club_id);
+		res.ok();
+	}
 };
 

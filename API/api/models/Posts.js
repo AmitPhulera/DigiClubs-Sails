@@ -21,13 +21,14 @@ module.exports = {
 	    	enum: ['public','members', 'core']
 	    },
 	    postedIn:{
-	    	model:'clubs',
+	    	model:'clubs'
 	    },
 	    user:{
-	    	collection:'users',
+	    	model:'users'
 	    },
 	    comments:{
 	    	collection:'comments',
+	    	via:'post'
 	    }
 	}
 };
