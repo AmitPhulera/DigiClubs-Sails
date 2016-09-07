@@ -15,11 +15,10 @@ module.exports = {
 	        type: 'string'
 	    },
 	    user:{
-	    	model:'users',
+	    	model:'users'
 	    },
 	    post:{
-	    	model:'posts',
-	    	
+	    	model:'posts'
 	    },
 	    date:{
 	    	type:'datetime'
