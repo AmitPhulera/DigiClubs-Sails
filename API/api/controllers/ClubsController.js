@@ -18,12 +18,12 @@ module.exports = {
     console.log('here');
     var club=req.param('clubId');
     console.log(req.allParams());
-    Roles.find({'club':req.param.clubId}).populate('user_id',{select:['name','id']}).populate('club').exec(function(err,data){
+    Roles.find({'club':club}).populate('user_id',{select:['name','id']}).populate('club').exec(function(err,data){
       if(err)
         return res.negotiate();
     	console.log('reaching here');
     	console.log(data);
-      res.ok(data);
+      	res.ok(data);
     });
   }
 };

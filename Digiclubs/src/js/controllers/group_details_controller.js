@@ -8,6 +8,39 @@ angular.module('DigiClubs.controllers.GroupDetails',[])
   		var user=Authenticate.getObject('user');
 		var theapp="http://localhost:1337/"
 		var clubId=$routeParams.club_id;
+		$scope.clubPosts=[];
+		io.socket.on(clubId,function(msg){
+       	  console.log(msg)
+          $scope.clubPosts.push(msg);
+          //console.log($scope.clubPosts);
+          $scope.$apply();
+        });
+
+        io.socket.on('comment',function(msg){
+       	  console.log(msg)
+          //$scope.clubPosts.push(msg);
+          //console.log($scope.clubPosts);
+          $scope.$apply();
+        });
+		$scope.doComment=function(postId,comment){
+			
+			//var postId=angular.element().data('id');
+			comm={
+				data:{
+					comment:comment,
+					post:postId,
+					user:user.id
+				},
+				clubId:clubId
+			};
+			console.log(comm)
+			$http.post(theapp+'comments/saveComment',{data:comm}).then(function(res){
+				console.log(res);
+			},function(err){
+				console.log(err);
+			});
+			console.log(postId);
+		}
 		$scope.connect=function(){	//Subscribing user to the club's socket list 
 			var id={
 				'clubId':clubId
@@ -20,14 +53,43 @@ angular.module('DigiClubs.controllers.GroupDetails',[])
 				}else{
 					console.log('User subscribed for the club');
 				}
-				$http.get(theapp+'clubs/listDetails/?clubId='+clubId+'&userId='+user.id,function(err,data){
-					if(err)
-						console.log(err);
-					else
-						console.log(data);
-				});
+				$http.get(theapp+'clubs/listDetails/?clubId='+clubId+'&userId='+user.id).then(function(response){
+					
+						console.log(response.data);
+						//$scope.clubPosts=response.data;
+					}
+				);
 			});
+			$http.get(theapp+'posts/listClubPosts/?clubId='+clubId).then(function(response){
+					
+						console.log(response.data);
+						$scope.clubPosts=response.data;
+					}
+			);
 			
 
+		};
+		$scope.insertPost=function(){
+			
+			var data={
+					'data':{
+						'post':$scope.post_content,
+						'postedIn':clubId,
+						'user':user.id,
+						'privacy':'public'//ToDO privacy to be changed
+					}
+			};
+			
+			io.socket.post(theapp+'posts/savePost',data,function(err,response){
+						if(err){
+							console.log('err');
+							console.log(err)
+						}
+						else{
+							console.log(response);
+							//$scope.groupPosts.push(response.data);
+							//$scope.$apply();
+						}
+					});
 		}
 	});
