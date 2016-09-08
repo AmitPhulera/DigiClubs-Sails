@@ -7,10 +7,7 @@
 module.exports = {
 	schema:true,
 	attributes: {
-	  	name: {
-	            type: 'string',
-	    },
-	    post: {
+	  	post: {
 	        type: 'string'
 	    },
 	    date:{

@@ -133,3 +133,4 @@ build/Release
 
 ### Bower ###
 #bower_components
+.bower.json

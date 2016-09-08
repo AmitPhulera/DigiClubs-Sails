@@ -1,5 +1,11 @@
 angular.module('DigiClubs.controllers.GroupDetails',[])
-	.controller('groupDetailsController',function($scope,$http,$location,$routeParams){
+	.controller('groupDetailsController',function($scope,$http,$location,$routeParams,Authenticate){
+		if(!Authenticate.get('token')){
+		      $location.path('/');
+		      Materialize.toast('Login To Continue!', 3000);
+		      return;
+		  }
+  		var user=Authenticate.getObject('user');
 		var theapp="http://localhost:1337/"
 		var clubId=$routeParams.club_id;
 		$scope.connect=function(){	//Subscribing user to the club's socket list 
@@ -14,7 +20,7 @@ angular.module('DigiClubs.controllers.GroupDetails',[])
 				}else{
 					console.log('User subscribed for the club');
 				}
-				$http.get(theapp+'clubs/listDetails/?clubId='+clubId,function(err,data){
+				$http.get(theapp+'clubs/listDetails/?clubId='+clubId+'&userId='+user.id,function(err,data){
 					if(err)
 						console.log(err);
 					else

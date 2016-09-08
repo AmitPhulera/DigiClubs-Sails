@@ -1,7 +1,7 @@
 <div ng-controller="clubController" ng-init="getClubs()"><ul class="collection">
     <li class="collection-item avatar" ng-repeat="club in clubs">
       <img src="images/yuna.jpg" alt="" class="circle">
-      <span class="title">{{club.clubname}}</span>
+      <span class="title"><a href="#/clubs/{{club.club_id}}">{{club.clubname}}</a></span>
       <p>About:- {{club.clubdetails}}
       </p>
       <p>Club Lead :-{{club.admin}} </p>

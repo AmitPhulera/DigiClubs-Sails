@@ -25,7 +25,7 @@ module.exports = {
 	    	enum: ['public','members', 'core']
 	    },
 	    clubs:{
-	    	model:'clubs',
+	    	model:'clubs'
 	    },
 	    reviews:{
 	    	type:'number'

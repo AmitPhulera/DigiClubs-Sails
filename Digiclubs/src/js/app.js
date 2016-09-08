@@ -4,6 +4,7 @@ angular.module('DigiClubs', [
   'DigiClubs.controllers.Main',
   'DigiClubs.controllers.Login',
   'DigiClubs.controllers.Posts',
+  'DigiClubs.controllers.GroupDetails',
   'DigiClubs.controllers.Clubs'
  ])
 

@@ -8,10 +8,7 @@
 module.exports = {
 	schema:true,
 	attributes: {
-	  	name: {
-	            type: 'string',
-	    },
-	    post: {
+	  	comment: {
 	        type: 'string'
 	    },
 	    user:{

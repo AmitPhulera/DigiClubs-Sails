@@ -2,19 +2,20 @@ angular.module('DigiClubs.controllers.Posts', [])
 
 .controller('PostsController', function($scope,Authenticate,$location,$http){
 	//console.log(Authenticate.auth);
+  if(!Authenticate.get('token')){
+      $location.path('/');
+      Materialize.toast('Login To Continue!', 3000);
+      return;
+  }
+  var user=Authenticate.getObject('user');
   var theapp="http://localhost:1337/";
   io.sails.url="http://localhost:1337";
   io.sails.connect(io.sails.url);
 	$scope.post_list=[];
-	if(!localStorage.getItem('token')){
-		$location.path('/');
-		Materialize.toast('Login To Continue!', 3000);
-		return;
-	}
-	Authenticate.auth=JSON.parse(localStorage.getItem('user'));
+	
 
  	$scope.fetch_posts=function(){
- 		var headers={Authorization:'JWT '+localStorage.getItem('token')};
+ 		var headers={Authorization:'JWT '+Authenticate.get('token')};
     $http.get(theapp+'posts').then(function(data){
       console.log(data);
       $scope.post_list=data.data;
