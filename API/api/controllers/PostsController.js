@@ -22,7 +22,7 @@ module.exports = {
 				sails.sockets.join(req,data.postedIn);
 				console.log('User subscribed to '+data.postedIn);
 				console.log(newPost);
-				Posts.findOne({id:newPost.id}).populate('user',{select:['name','id']}).populate('postedIn',{select:['name','id']}).exec(function(err,result){
+				Posts.findOne({id:newPost.id}).populate('user',{select:['name','id']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,result){
 					if(err)
 						return res.negotiate();
 					console.log(result);
@@ -36,7 +36,7 @@ module.exports = {
 	},
 	listClubPosts:function(req,res){
 		var club=req.param('clubId');
-		Posts.find({postedIn:club}).populate('user',{select:['name','id']}).populate('postedIn',{select:['name','id']}).exec(function(err,data){
+		Posts.find({postedIn:club}).populate('user',{select:['name','id']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,data){
 			if(err)
 				return res.negotiate();
 			console.log(data);

@@ -25,7 +25,8 @@
               </div>
             </div>
             <div class="comment-box" id="{{post.id}}">
-              <div class="comment">
+              <div class="comment" ng-repeat="comment in post.comments">
+              	<a href="{{comment.user}}">{{comment.name}}</a> :- {{comment.comment}}
               </div>
             </div>
             <div class="card-action">

@@ -18,8 +18,14 @@ angular.module('DigiClubs.controllers.GroupDetails',[])
 
         io.socket.on('comment',function(msg){
        	  console.log(msg)
-          //$scope.clubPosts.push(msg);
-          //console.log($scope.clubPosts);
+       	  angular.forEach($scope.clubPosts,function(value,key){
+       	  	console.log(value.id)
+       	  	if(value.id==msg.post){
+       	  		console.log('here')
+				value.comments.push(msg);
+				$scope.comment='';
+       	  	}
+       	  });
           $scope.$apply();
         });
 		$scope.doComment=function(postId,comment){
@@ -29,7 +35,8 @@ angular.module('DigiClubs.controllers.GroupDetails',[])
 				data:{
 					comment:comment,
 					post:postId,
-					user:user.id
+					user:user.id,
+					name:user.name
 				},
 				clubId:clubId
 			};
@@ -86,7 +93,9 @@ angular.module('DigiClubs.controllers.GroupDetails',[])
 							console.log(err)
 						}
 						else{
+							$scope.post_content="";
 							console.log(response);
+
 							//$scope.groupPosts.push(response.data);
 							//$scope.$apply();
 						}
