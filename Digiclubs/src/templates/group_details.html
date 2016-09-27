@@ -1,21 +1,21 @@
-<div class="row" ng-controller="groupDetailsController as groupDetailsC" ng-init="connect()">
+<div class="row" ng-controller="groupDetailsController as groupDetailsC" ng-init="groupDetailsC.connect()">
 	<div class="col s8">
 	<div class="card">
 		<div class="col s8">
 			<div class="row ">
 		    
 		        <div class="input-field col s12">
-		          <textarea id="post_insert" class="materialize-textarea" ng-model="post_content"></textarea>
+		          <textarea id="post_insert" class="materialize-textarea" ng-model="groupDetailsC.post_content"></textarea>
 		          <label for="post_insert">Ventilate Your Bright Ideas!</label>
 		        </div>
 
 		  </div>
         </div>
         <div class="col s2">
-        	<a class="waves-effect waves-light btn" ng-click="insertPost()">Say It</a>
+        	<a class="waves-effect waves-light btn" ng-click="groupDetailsC.insertPost()">Say It</a>
         </div>
         </div>
-        <div class="col s12" ng-repeat="post in clubPosts track by $index" >
+        <div class="col s12" ng-repeat="post in groupDetailsC.clubPosts  | orderBy:'-createdAt' track by $index" >
           <div class="card collection hoverable">
             <div class="card-content black-text collection-item avatar">
               <img src="images/a.jpg" alt="" class="circle">
@@ -26,11 +26,11 @@
             </div>
             <div class="comment-box" id="{{post.id}}">
               <div class="comment" ng-repeat="comment in post.comments">
-              	<a href="{{comment.user}}">{{comment.name}}</a> :- {{comment.comment}}
+              	<a href="#/users/{{comment.user}}">{{comment.name}}</a> :- {{comment.comment}}
               </div>
             </div>
             <div class="card-action">
-              <input type="text" style="width:80%;margin-bottom:0"  ng-model="comment[$index]"><span ><a ng-click="doComment(post.id,comment[$index],$index);">Say<i class="small material-icons">send</i></a></span>
+              <input type="text" style="width:80%;margin-bottom:0"  ng-model="groupDetailsC.comment[$index]"><span ><a ng-click="groupDetailsC.doComment(post.id,groupDetailsC.comment[$index],$index);">Say<i class="small material-icons">send</i></a></span>
             </div>
           </div>
         </div>

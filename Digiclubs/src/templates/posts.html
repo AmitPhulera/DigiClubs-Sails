@@ -68,7 +68,7 @@
             </div>
           </div>
         </div> -->
-        <div class="col s12" ng-repeat="post in postC.post_list track by $index">
+        <div class="col s12" ng-repeat="post in postC.post_list | orderBy:'-createdAt' track by $index">
             <div class="card collection hoverable">
                 <div class="card-content black-text collection-item avatar">
                     <img src="images/a.jpg" alt="" class="circle">
@@ -79,7 +79,7 @@
                 </div>
                 <div class="comment-box" id="{{post.id}}">
                     <div class="comment" ng-repeat="comment in post.comments">
-                        <a href="{{comment.user}}">{{comment.name}}</a> :- {{comment.comment}}
+                        <a href="#/users/{{comment.user}}">{{comment.name}}</a> :- {{comment.comment}}
                     </div>
                 </div>
                 <div class="card-action">

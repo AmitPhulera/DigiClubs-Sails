@@ -1,7 +1,7 @@
 angular.module('DigiClubs.controllers.Posts', [])
 
-.controller('PostsController', function(Authenticate, $location, $http) {
-    //console.log(Authenticate.auth);
+.controller('PostsController', function(Authenticate,Server, $location, $http) {
+    
     /****************************************************************
                 Authentication Wali BAketi !!!
     *****************************************************************/
@@ -11,14 +11,27 @@ angular.module('DigiClubs.controllers.Posts', [])
         return;
     }
     /*****************************************************************/
-    var user = Authenticate.getObject('user');
-    var theapp = "http://localhost:1337/";
+
 
     /****************************************************************
     Master Object 'sc' use this to acess elements in every controller
     *****************************************************************/
     var sc = this;
     /*****************************************************************/
+
+    
+    /******************************************************************************
+    Object 'user'. Use 'theapp' for api calls to server,returns address to server
+    *******************************************************************************/    
+    var theapp = Server;
+   /*****************************************************************************/
+
+    /******************************************************************
+    User Object 'user'. Use this to acess user info in every controller
+    *****************************************************************/
+    var user = Authenticate.getObject('user');
+    /*****************************************************************/
+
 
     sc.post_list = [];
 
