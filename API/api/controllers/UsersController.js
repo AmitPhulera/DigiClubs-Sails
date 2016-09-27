@@ -21,5 +21,6 @@ module.exports = {
             res.ok(data);
         });
     }
+
 };
 

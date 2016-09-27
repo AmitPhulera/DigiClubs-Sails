@@ -42,4 +42,5 @@ angular.module('DigiClubs.controllers.Profile',[])
 
 		},function(err){console.log(err);});
 	}; 
+
 });
