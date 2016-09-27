@@ -10,6 +10,16 @@ module.exports = {
 		var club_id=req.param('clubId');
 		sails.sockets.join(req,club_id);
 		res.ok();
-	}
+	},
+	list: function(req, res) {
+        var uid = req.param('userId');
+        console.log(req.allParams());
+        Roles.find({ 'user_id': uid }).populate('user_id', { select: ['name', 'id'] }).populate('club', {select:['name','id']}).exec(function(err, data) {
+            if (err)
+                return res.negotiate();
+            console.log(data);
+            res.ok(data);
+        });
+    }
 };
 

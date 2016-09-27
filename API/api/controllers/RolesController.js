@@ -17,7 +17,7 @@ module.exports = {
 				async.each(user,function(user,callback){
 				Roles.count({role:'member',club:user.club.id}).exec(function(err,found){
 						var q = user.club;//{role:'member',club:user.club.id};
-						console.log(q)
+						console.log(q);
 						if(err)
 							return res.badRequest();
 						obj={clubname:user.club.name,clubdetails:user.club.detail,club_id:user.club.id,admin:user.user_id.name,admin_id:user.user_id.id,member:found};
