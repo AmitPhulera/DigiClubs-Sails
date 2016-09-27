@@ -28,7 +28,7 @@ angular.module('DigiClubs.controllers.GroupDetails',[])
        	  });
           $scope.$apply();
         });
-		$scope.doComment=function(postId,comment){
+		$scope.doComment=function(postId,comment,index){
 			
 			//var postId=angular.element().data('id');
 			comm={
@@ -43,6 +43,7 @@ angular.module('DigiClubs.controllers.GroupDetails',[])
 			console.log(comm)
 			$http.post(theapp+'comments/saveComment',{data:comm}).then(function(res){
 				console.log(res);
+				$scope.comment[$index]='';
 			},function(err){
 				console.log(err);
 			});

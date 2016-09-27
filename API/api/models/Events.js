@@ -24,9 +24,28 @@ module.exports = {
 	    	type:'string',
 	    	enum: ['public','members', 'core']
 	    },
+	    branch:{
+	    	type:'string',
+	    	enum: ['CS','ECE', 'Mechanical']
+	    },
 	    clubs:{
 	    	model:'clubs'
 	    },
+	    prereq:{
+	    	type:'string',
+	    },
+	    seats:{
+	    	type:'number'
+	    },
+	    cost:{
+	    	type:'number'
+	    },
+	    duration:{
+	    	type:'number'
+	    },
+	    // comments:{
+
+	    // },
 	    reviews:{
 	    	type:'number'
 	    }

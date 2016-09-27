@@ -20,6 +20,9 @@ module.exports = {
 	    post:{
 	    	model:'posts'
 	    },
+	    // event:{
+	    // 	model:'events'
+	    // },
 	    date:{
 	    	type:'datetime'
 	    }

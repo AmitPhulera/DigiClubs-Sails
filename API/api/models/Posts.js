@@ -17,6 +17,10 @@ module.exports = {
 	    	type:'string',
 	    	enum: ['public','members', 'core']
 	    },
+	    branches:{
+	    	type:'string',
+	    	enum:['CS','ECE','Mechanical','all']
+	    },
 	    postedIn:{
 	    	model:'clubs'
 	    },

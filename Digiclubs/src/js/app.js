@@ -5,7 +5,8 @@ angular.module('DigiClubs', [
   'DigiClubs.controllers.Login',
   'DigiClubs.controllers.Posts',
   'DigiClubs.controllers.GroupDetails',
-  'DigiClubs.controllers.Clubs'
+  'DigiClubs.controllers.Clubs',
+  'DigiClubs.controllers.Events'
  ])
 
 .config(function($routeProvider) {

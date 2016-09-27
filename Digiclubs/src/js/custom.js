@@ -3,4 +3,5 @@ $( document ).ready(function(){
       menuWidth: 300, 
       closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
     });
+    $('.modal-trigger').leanModal();
 }); 
