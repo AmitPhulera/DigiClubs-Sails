@@ -25,8 +25,8 @@ module.exports = {
 	    	enum: ['public','members', 'core']
 	    },
 	    branch:{
-	    	type:'string',
-	    	enum: ['CS','ECE', 'Mechanical']
+	    	type:'array'
+	    	
 	    },
 	    clubs:{
 	    	model:'clubs'
@@ -35,19 +35,19 @@ module.exports = {
 	    	type:'string',
 	    },
 	    seats:{
-	    	type:'number'
+	    	type:'integer'
 	    },
 	    cost:{
-	    	type:'number'
+	    	type:'integer'
 	    },
 	    duration:{
-	    	type:'number'
+	    	type:'integer'
 	    },
 	    // comments:{
 
 	    // },
 	    reviews:{
-	    	type:'number'
+	    	type:'integer'
 	    }
 	}
 };

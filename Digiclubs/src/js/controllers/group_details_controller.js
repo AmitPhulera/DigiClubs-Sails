@@ -32,7 +32,7 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         /*****************************************************************/
         
         sc.comment = [];
-        
+        var stream=['CS','ECE','Mechanical','All'];
         var clubId = $routeParams.club_id;
         sc.clubPosts = [];
         io.socket.on(clubId, function(msg) {
@@ -120,4 +120,23 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
 				}
             });
         };
+        sc.addEvent=function(){
+    	
+        branch=[];
+        for(i=0;i<=stream.length;i++)
+        {
+            if(sc.branch[i])
+                branch.push(stream[i]);
+        }
+        sc.event.branch=branch;
+        sc.clubs=clubId;
+        console.log(sc.event);
+    	$http.post(theapp+'events/create',sc.event)
+    		.then(function(res){
+                console.log('success');
+    			console.log(res);
+    		},function(err){
+    			console.log(err);
+    		});
+    };
     });
