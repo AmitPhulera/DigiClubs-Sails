@@ -1,6 +1,6 @@
 angular.module('DigiClubs.controllers.Clubs', [])
 
-.controller('clubController', function($scope,$http,$location,Authenticate){
+.controller('clubController', function($http,$location,Authenticate){
 	if(!Authenticate.get('token')){
       $location.path('/');
       Materialize.toast('Login To Continue!', 3000);
@@ -8,12 +8,13 @@ angular.module('DigiClubs.controllers.Clubs', [])
   }
   var user=Authenticate.getObject('user');
 	var theapp="http://localhost:1337/";
-	$scope.clubs=[];
-	$scope.getClubs = function(){
+	
+	var sc=this;
+	sc.getClubs = function(){
 		$http.get(theapp+"roles/list")
 			.then(function(response){
-				$scope.clubs=response.data;
+				sc.clubs=response.data;
 			},function(err){console.log(err);});
-	}
+	};
 });
 	  

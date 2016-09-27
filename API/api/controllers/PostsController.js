@@ -6,6 +6,10 @@
  */
 
 module.exports = {
+	subscribe:function(req,res){
+		sails.sockets.join(req,'public');
+		res.ok();
+	},
 	savePost:function(req,res){
 		console.log(req.allParams());
 		var data=req.param('data');
@@ -42,6 +46,15 @@ module.exports = {
 			console.log(data);
 			res.ok(data);
 		});
-	}
+	},
+	listPublicPosts:function(req,res){
+		Posts.find({privacy:'public'}).populate('user',{select:['name','id']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,data){
+			if(err)
+				return res.negotiate();
+			console.log(data);
+			res.ok(data);
+		});
+	},
+
 };
 

@@ -6,22 +6,23 @@ angular.module('DigiClubs.controllers.GroupDetails',[])
 		      return;
 		  }
   		var user=Authenticate.getObject('user');
-		var theapp="http://localhost:1337/"
+  		$scope.comment=[];
+		var theapp="http://localhost:1337/";
 		var clubId=$routeParams.club_id;
 		$scope.clubPosts=[];
 		io.socket.on(clubId,function(msg){
-       	  console.log(msg)
+       	  console.log(msg);
           $scope.clubPosts.push(msg);
           //console.log($scope.clubPosts);
           $scope.$apply();
         });
 
         io.socket.on('comment',function(msg){
-       	  console.log(msg)
+       	  console.log(msg);
        	  angular.forEach($scope.clubPosts,function(value,key){
-       	  	console.log(value.id)
+       	  	console.log(value.id);
        	  	if(value.id==msg.post){
-       	  		console.log('here')
+       	  		console.log('here');
 				value.comments.push(msg);
 				$scope.comment='';
        	  	}
@@ -40,15 +41,15 @@ angular.module('DigiClubs.controllers.GroupDetails',[])
 				},
 				clubId:clubId
 			};
-			console.log(comm)
+			console.log(comm);
 			$http.post(theapp+'comments/saveComment',{data:comm}).then(function(res){
 				console.log(res);
-				$scope.comment[$index]='';
+				$scope.comment[index]='';
 			},function(err){
 				console.log(err);
 			});
 			console.log(postId);
-		}
+		};
 		$scope.connect=function(){	//Subscribing user to the club's socket list 
 			var id={
 				'clubId':clubId

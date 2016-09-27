@@ -1,5 +1,5 @@
-<div ng-controller="PostsController as posts" class="row" ng-init="fetch_posts()">
-<!-- <div class="col s12 m4" ng-repeat='post in post_list track by $index'><div class="card sticky-action">
+<div ng-controller="PostsController as postC" class="row" ng-init="postC.fetch_posts()">
+    <!-- <div class="col s12 m4" ng-repeat='post in post_list track by $index'><div class="card sticky-action">
   <div class="card-horizontal">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="images/a1.jpg">
@@ -20,35 +20,36 @@
   </div>
 </div>
  -->
- <style>
-    .card .card-action{
-      padding:0px;
-
-
-    }
-    .card .card-action input{
-      width:86%;
-      margin-bottom: 0px;
-      font-size: 1.3rem;
-    }
-    .card .card-action span .material-icons{
-      margin-left: 1.3rem;
-      margin-top:1rem;
-      cursor: pointer;
-    }
-    .card .comment-box .comment span{
-      display: block;
-      text-indent: -4rem;
-      margin-left: 5rem;
+    <style>
+    .card .card-action {
+        padding: 0px;
     }
     
-    .card .card-action span.comment-data{
-      max-height: 20px;
-      overflow: hidden;
+    .card .card-action input {
+        width: 86%;
+        margin-bottom: 0px;
+        font-size: 1.3rem;
     }
- </style>
-<div class="row">
-        <div class="col s12" ng-repeat="post in post_list track by $index">
+    
+    .card .card-action span .material-icons {
+        margin-left: 1.3rem;
+        margin-top: 1rem;
+        cursor: pointer;
+    }
+    
+    .card .comment-box .comment span {
+        display: block;
+        text-indent: -4rem;
+        margin-left: 5rem;
+    }
+    
+    .card .card-action span.comment-data {
+        max-height: 20px;
+        overflow: hidden;
+    }
+    </style>
+    <div class="row">
+        <!-- <div class="col s12" ng-repeat="post in post_list track by $index">
           <div class="card collection hoverable">
             <div class="card-content black-text collection-item avatar">
               <img src="images/a.jpg" alt="" class="circle">
@@ -66,7 +67,25 @@
               <input type="text" style="width:80%;margin-bottom:0" ng-model="comment"><span><i class="small material-icons">send</i></span>
             </div>
           </div>
+        </div> -->
+        <div class="col s12" ng-repeat="post in postC.post_list track by $index">
+            <div class="card collection hoverable">
+                <div class="card-content black-text collection-item avatar">
+                    <img src="images/a.jpg" alt="" class="circle">
+                    <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a> > <a href="#/clubs/{{post.postedIn.id}}">{{post.postedIn.name}}</a></span>
+                    <div class="post">
+                        <p>{{post.post}}</p>
+                    </div>
+                </div>
+                <div class="comment-box" id="{{post.id}}">
+                    <div class="comment" ng-repeat="comment in post.comments">
+                        <a href="{{comment.user}}">{{comment.name}}</a> :- {{comment.comment}}
+                    </div>
+                </div>
+                <div class="card-action">
+                    <input type="text" style="width:80%;margin-bottom:0" ng-model="postC.comment[$index]"><span><a ng-click="postC.doComment(post.id,postC.comment[$index],$index);">Say<i class="small material-icons">send</i></a></span>
+                </div>
+            </div>
         </div>
-
+    </div>
 </div>
- </div>

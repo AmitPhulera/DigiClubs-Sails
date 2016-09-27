@@ -16,7 +16,12 @@ module.exports = {
 			Comments.findOne({id:result.id}).populate('user',{select:['name','id']}).exec(function(err,data){
 				if(err)
 					return res.negotiate();
-				sails.sockets.broadcast(club.data.clubId,'comment',data);
+				if(club.data.clubId)
+					sails.sockets.broadcast(club.data.clubId,'comment',data);
+				else{
+					console.log('public data');
+					sails.sockets.broadcast('public','comment',data);
+				}
 				return res.ok();	
 			});
 		});
