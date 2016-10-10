@@ -19,15 +19,15 @@ module.exports = {
 				
 				console.log('here');
 				sails.sockets.join(req,data.postedIn);
-				if(newPost.privacy=='public')
+				if(newPost.privacy=='public'){
 					sails.sockets.join(req,'public');
-				console.log('User subscribed to '+data.postedIn);
+					console.log('adding to public');
+				}
 				console.log(newPost);
 				Posts.findOne({id:newPost.id}).populate('user',{select:['name','id']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,result){
 					if(err)
 						return res.negotiate();
 					console.log(result);
-					console.log('broadcasted to '+data.postedIn);
 					sails.sockets.broadcast(data.postedIn,data.postedIn,result);
 					if(newPost.privacy=="public"){
 						sails.sockets.broadcast('public','publicPost',result);
@@ -35,9 +35,6 @@ module.exports = {
 					}
 					res.ok();
 				});
-				
-				
-			
 		});
 	},
 	listClubPosts:function(req,res){
