@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="card-action">
-                    <input type="text" style="width:80%;margin-bottom:0" ng-model="postC.comment[$index]"><span><a ng-click="postC.doComment(post.id,postC.comment[$index],$index);">Say<i class="small material-icons">send</i></a></span>
+                    <input type="text" style="width:80%;margin-bottom:0" ng-model="postC.comment[$index]"><span><a ng-click="postC.doComment(post.id,postC.comment[$index],$index,post.privacy,post.postedIn.id);">Say<i class="small material-icons">send</i></a></span>
                 </div>
             </div>
         </div>

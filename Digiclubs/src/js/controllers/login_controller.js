@@ -33,7 +33,7 @@ angular.module('DigiClubs.controllers.Login', [])
     
     // LOGIN Function
     $scope.try_login = function() {
-        console.log($scope.login)
+        console.log($scope.login);
         $http.post(theapp + 'auth/signin', $scope.login)
             .then(function a(response) {
                     console.log('success');

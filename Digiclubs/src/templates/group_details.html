@@ -30,7 +30,7 @@
               </div>
             </div>
             <div class="card-action">
-              <input type="text" style="width:80%;margin-bottom:0"  ng-model="groupDetailsC.comment[$index]"><span ><a ng-click="groupDetailsC.doComment(post.id,groupDetailsC.comment[$index],$index);">Say<i class="small material-icons">send</i></a></span>
+              <input type="text" style="width:80%;margin-bottom:0"  ng-model="groupDetailsC.comment[$index]"><span ><a ng-click="groupDetailsC.doComment(groupDetailsC.comment[$index],$index,post.id,post.privacy);">Say<i class="small material-icons">send</i></a></span>
             </div>
           </div>
         </div>
@@ -126,5 +126,5 @@
                 <a class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="groupDetailsC.addEvent()">Add</a>
             </div>
         </div>
-    </div>
+    
 </div>

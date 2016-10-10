@@ -18,60 +18,9 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         var sc = this;
         /*****************************************************************/
 
-
-        /******************************************************************************
-        Object 'user'. Use 'theapp' for api calls to server,returns address to server
-        *******************************************************************************/
-        var theapp = Server;
-        /*****************************************************************************/
-
-        /***********************************************************************
-        User Object 'user'. Use this to acess user info in every controller
-        ***********************************************************************/
-        var user = Authenticate.getObject('user');
-        /*****************************************************************/
-        
-        sc.comment = [];
-        var stream=['CS','ECE','Mechanical','All'];
-        var clubId = $routeParams.club_id;
-        sc.clubPosts = [];
-        io.socket.on(clubId, function(msg) {
-            console.log(msg);
-            sc.clubPosts.push(msg);
-            $scope.$apply();
-
-        });
-
-        io.socket.on('comment', function(msg) {
-            console.log(msg);
-            angular.forEach(sc.clubPosts, function(value, key) {
-                if (value.id == msg.post) {
-                    console.log('here');
-                    value.comments.push(msg);
-                    
-                }
-            });
-            
-        });
-        sc.doComment = function(postId, comment, index) {
-			comm = {
-                data: {
-                    comment: comment,
-                    post: postId,
-                    user: user.id,
-                    name: user.name
-                },
-                clubId: clubId
-            };
-            
-            $http.post(theapp + 'comments/saveComment', { data: comm }).then(function(res) {
-                console.log(res);
-                sc.comment[index] = '';
-            }, function(err) {
-                console.log(err);
-            });
-            console.log(postId);
-        };
+        /****************************************************************
+                    Sokcet Connection Shit
+        *****************************************************************/
         sc.connect = function() { //Subscribing user to the club's socket list 
             var id = {
                 'clubId': clubId
@@ -98,6 +47,78 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
 
 
         };
+        //looking for new posts and appending to the post array
+        io.socket.on(clubId, function(msg) {
+            console.log(msg);
+            sc.clubPosts.push(msg);
+            $scope.$apply();
+
+        });
+        //looking for new comments and appending to respective posts
+        io.socket.on('comment', function(msg) {
+            console.log(msg);
+            
+            angular.forEach(sc.clubPosts, function(value, key) {
+                if (value.id == msg.post) {
+                    console.log('here');
+                    value.comments.push(msg);
+                    $scope.$apply();
+
+                }
+            });
+            
+        });
+
+        io.socket.on('posts', function(msg) {
+            console.log(msg);
+            if (msg.verb == 'created') {
+                console.log(msg.data);
+                sc.post_list.push(msg.data);
+                //console.log($scope.main.post_list);
+                $scope.$apply();
+            }
+        });
+        /*****************************************************************/
+
+        /******************************************************************************
+        Object 'user'. Use 'theapp' for api calls to server,returns address to server
+        *******************************************************************************/
+        var theapp = Server;
+        /*****************************************************************************/
+
+        /***********************************************************************
+        User Object 'user'. Use this to acess user info in every controller
+        ***********************************************************************/
+        var user = Authenticate.getObject('user');
+        /*****************************************************************/
+
+        
+        sc.comment = [];
+        var stream=['CS','ECE','Mechanical','All'];
+        var clubId = $routeParams.club_id;
+        sc.clubPosts = [];
+        
+        sc.doComment = function(comment, index,postId ,privacy) {
+			comm = {
+                data: {
+                    comment: comment,
+                    post: postId,
+                    user: user.id,
+                    name: user.name
+                },
+                club: clubId,
+                privacy:privacy
+            };
+            
+            $http.post(theapp + 'comments/saveComment', { data: comm }).then(function(res) {
+                console.log(res);
+                sc.comment[index] = '';
+            }, function(err) {
+                console.log(err);
+            });
+            console.log(postId);
+        };
+        
         sc.insertPost = function() {
 
             var data = {

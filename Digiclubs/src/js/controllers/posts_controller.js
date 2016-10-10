@@ -1,6 +1,6 @@
 angular.module('DigiClubs.controllers.Posts', [])
 
-.controller('PostsController', function(Authenticate,Server, $location, $http) {
+.controller('PostsController', function(Authenticate,Server, $location, $http,$scope) {
     
     /****************************************************************
                 Authentication Wali BAketi !!!
@@ -39,29 +39,37 @@ angular.module('DigiClubs.controllers.Posts', [])
 
     io.sails.url = "http://localhost:1337";
 
-    io.socket.on('connect', function() {
+    /*io.socket.on('connect', function() {
         io.socket.on('posts', function(msg) {
             console.log(msg);
             if (msg.verb == 'created') {
                 console.log(msg.data);
                 sc.post_list.push(msg.data);
                 //console.log($scope.main.post_list);
-                //$scope.$apply();
+                $scope.$apply();
             }
 
         });
-    });
+    });*/
 
-    io.socket.on('comment', function(msg) {
+    io.socket.on('commentt', function(msg) {
         console.log(msg);
         angular.forEach(sc.post_list, function(value, key) {
 
             if (value.id == msg.post) {
 
                 value.comments.push(msg);
+                $scope.$apply();
             }
         });
+    });
 
+    io.socket.on('publicPost',function(msg){
+        if (msg.verb == 'created') {
+            console.log(msg.data);
+            sc.post_list.push(msg.data);
+            $scope.$apply();
+        }
     });
 
     /*****************Ended In Peace****************/
@@ -86,7 +94,7 @@ angular.module('DigiClubs.controllers.Posts', [])
         });
     };
 
-    sc.doComment = function(postId, comment, index) {
+    sc.doComment = function(postId, comment, index, privacy,clubId) {
         comm = {
             data: {
                 comment: comment,
@@ -94,7 +102,8 @@ angular.module('DigiClubs.controllers.Posts', [])
                 user: user.id,
                 name: user.name
             },
-
+            privacy:privacy,
+            club:clubId
         };
         console.log(comm);
         $http.post(theapp + 'comments/saveComment', { data: comm }).then(function(res) {
