@@ -11,7 +11,8 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         }
         /*****************************************************************/
 
-
+        var clubId = $routeParams.club_id;
+        
         /****************************************************************
         Master Object 'sc' use this to acess elements in every controller
         *****************************************************************/
@@ -95,7 +96,7 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         
         sc.comment = [];
         var stream=['CS','ECE','Mechanical','All'];
-        var clubId = $routeParams.club_id;
+        
         sc.clubPosts = [];
         
         sc.doComment = function(comment, index,postId ,privacy) {

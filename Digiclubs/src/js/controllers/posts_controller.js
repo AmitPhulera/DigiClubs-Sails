@@ -65,11 +65,11 @@ angular.module('DigiClubs.controllers.Posts', [])
     });
 
     io.socket.on('publicPost',function(msg){
-        if (msg.verb == 'created') {
-            console.log(msg.data);
-            sc.post_list.push(msg.data);
+
+            console.log(msg);
+            sc.post_list.push(msg);
             $scope.$apply();
-        }
+        
     });
 
     /*****************Ended In Peace****************/
