@@ -23,7 +23,19 @@ module.exports = {
 
             res.ok(data);
         });
-    }
+    },
+  upload: function  (req, res) {
+    var name = req.param('uid');
+    var about = req.param('about');
+    console.log(name);
+    req.file('avatar').upload({dirname: require('path').resolve(sails.config.appPath, 'assets/images'),saveAs: name},function (err, files) {
+      if (err)
+        return res.serverError(err);
 
-};
+      return res.json({
+        message: files.length + ' file(s) uploaded successfully!',
+        files: files
+      });
+    });
+  }};
 
