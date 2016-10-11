@@ -6,9 +6,9 @@
   /* For IE6-8 */
   src: local('Material Icons'),
        local('MaterialIcons-Regular'),
-       url("../fonts/roboto/MaterialIcons-Regular.woff2") format('woff2'),
-       url("../fonts/roboto/MaterialIcons-Regular.woff") format('woff'),
-       url("../fonts/roboto/MaterialIcons-Regular.ttf") format('truetype');
+       url('../fonts/roboto/MaterialIcons-Regular.woff2') format('woff2'),
+       url('../fonts/roboto/MaterialIcons-Regular.woff') format('woff'),
+       url('../fonts/roboto/MaterialIcons-Regular.ttf') format('truetype');
 }
 
 .material-icons {

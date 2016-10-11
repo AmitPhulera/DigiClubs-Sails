@@ -22,6 +22,8 @@
     "streamqueue": "^0.1.1",
     "gulp-rename": "^1.2.0",
     "gulp-import-css": "^0.1.2"
+  },
+  "dependencies": {
+    "q": "^1.4.1"
   }
-  
 }
