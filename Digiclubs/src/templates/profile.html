@@ -1,17 +1,16 @@
 
 <div ng-controller="profileController as profileC" ng-init="profileC.getProfile()">
-
-
     <div class="row">
         <div class="col s12 ">
             <div class="card collection">
                 <div class="card-content black-text collection-item avatar">
                     <img src="images/a.jpg" alt="" class="circle">
 
-                    <span class="card-title">{{profileC.profile[0].user_id.name}}</span>
-                    <div class="user-details" ng-repeat="user in profileC.profile">
-
-                        <p>Clubs:-{{user.club.name}}</p>
+                    <span class="card-title">{{profileC.profile.name}}</span>
+                    <div class="user-details">
+                       <p>Email:-{{profileC.profile.email}}</p>
+                       <p>About:-{{profileC.profile.about}}</p>
+                       <p ng-repeat="role in profileC.clubdata">{{role.role}} at {{role.club.name}}</p>
                        <!--  <p>Projects :-</p>
                         <p>Events :- </p> -->
                     </div>

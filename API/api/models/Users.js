@@ -15,7 +15,7 @@ module.exports = {
             unique: true
         },
         branch:{
-            type:'string',
+            type:'string'
         },
         photo: {
             type: 'string',
@@ -29,6 +29,9 @@ module.exports = {
         roles:{
             collection:'roles',
             via:'user_id'
+        },
+        about:{
+            type: 'string'
         },
         toJSON: function () {
             var obj = this.toObject();

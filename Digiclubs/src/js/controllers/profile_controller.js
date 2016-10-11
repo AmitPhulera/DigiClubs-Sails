@@ -44,6 +44,13 @@ angular.module('DigiClubs.controllers.Profile', [])
                 Materialize.toast('Some Error Occured While Connecting!!', 3000);
                 console.log(err); 
             });
+         $http.get(theapp + 'users/list?userId=' +user.id)
+            .then(function(response){
+                sc.clubdata = response.data; 
+            },function(err){
+                 Materialize.toast('Some Error Occured While Connecting!!', 3000);
+            });
+       
     };
 
 });
