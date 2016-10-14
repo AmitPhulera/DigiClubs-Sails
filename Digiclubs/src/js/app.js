@@ -1,6 +1,7 @@
 angular.module('DigiClubs', [
   'ngRoute',
   'mobile-angular-ui',
+  'ngFileUpload',
   'DigiClubs.controllers.Main',
   'DigiClubs.controllers.Login',
   'DigiClubs.controllers.Posts',

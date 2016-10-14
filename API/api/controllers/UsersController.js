@@ -6,17 +6,17 @@
  */
 
 module.exports = {
-	subscribe:function(req,res){
-		var club_id=req.param('clubId');
+    subscribe: function(req, res) {
+        var club_id = req.param('clubId');
         console.log('*****************');
-        console.log('clubId is '+club_id);
-		sails.sockets.join(req,club_id);
-		res.ok();
-	},
+        console.log('clubId is ' + club_id);
+        sails.sockets.join(req, club_id);
+        res.ok();
+    },
     list: function(req, res) {
         var uid = req.param('userId');
         console.log(req.allParams());
-        Roles.find({ 'user_id': uid }).populate('user_id', { select: ['name', 'id'] }).populate('club', {select:['name','id']}).exec(function(err, data) {
+        Roles.find({ 'user_id': uid }).populate('user_id', { select: ['name', 'id'] }).populate('club', { select: ['name', 'id'] }).exec(function(err, data) {
             if (err)
                 return res.negotiate();
             console.log(data);
@@ -24,18 +24,23 @@ module.exports = {
             res.ok(data);
         });
     },
-  upload: function  (req, res) {
-    var name = req.param('uid');
-    var about = req.param('about');
-    console.log(name);
-    req.file('avatar').upload({dirname: require('path').resolve(sails.config.appPath, 'assets/images'),saveAs: name},function (err, files) {
-      if (err)
-        return res.serverError(err);
+    upload: function(req, res) {
+        req.file('file').upload({ dirname: require('path').resolve(sails.config.appPath, 'assets/images'), saveAs: req.param('userid') + '.jpg' }, function(err, files) {
+            if (err)
+                return res.serverError(err);
+            var theurl = req.baseUrl + '/images/' + req.param('userid') + '.jpg';
+            Users.update({'id':req.param('userid')},{ 'photo': theurl }).exec(function(err, data) {
+                if (err)
+                    console.log(err);
+                else
+                    return res.ok({
+                        message: files.length + ' file(s) uploaded successfully!',
+                        files: files,
+                        user:data
+                    });
+            });
+        });
+    }
 
-      return res.json({
-        message: files.length + ' file(s) uploaded successfully!',
-        files: files
-      });
-    });
-  }};
 
+};
