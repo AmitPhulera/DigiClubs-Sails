@@ -24,6 +24,7 @@ module.exports = {
             res.ok(data);
         });
     },
+
     search: function(req, res) {
         usr=req.param('name');
         console.log('usr');
@@ -36,6 +37,27 @@ module.exports = {
             res.ok(userList);
         });
 
+    },
+
+
+    upload: function(req, res) {
+        req.file('file').upload({ dirname: require('path').resolve(sails.config.appPath, 'assets/images'), saveAs: req.param('userid') + '.jpg' }, function(err, files) {
+            if (err)
+                return res.serverError(err);
+            var theurl = req.baseUrl + '/images/' + req.param('userid') + '.jpg';
+            Users.update({'id':req.param('userid')},{ 'photo': theurl }).exec(function(err, data) {
+                if (err)
+                    console.log(err);
+                else
+                    return res.ok({
+                        message: files.length + ' file(s) uploaded successfully!',
+                        files: files,
+                        user:data
+                    });
+            });
+        });
     }
+
+
 
 };

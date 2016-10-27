@@ -1,17 +1,15 @@
-
 <div ng-controller="profileController as profileC" ng-init="profileC.getProfile()">
     <div class="row">
         <div class="col s12 ">
             <div class="card collection">
                 <div class="card-content black-text collection-item avatar">
-                    <img src="images/a.jpg" alt="" class="circle">
-
+                    <img src="{{profileC.profile.photo}}" alt="" class="circle">
                     <span class="card-title">{{profileC.profile.name}}</span>
                     <div class="user-details">
-                       <p>Email:-{{profileC.profile.email}}</p>
-                       <p>About:-{{profileC.profile.about}}</p>
-                       <p ng-repeat="role in profileC.clubdata">{{role.role}} at {{role.club.name}}</p>
-                       <!--  <p>Projects :-</p>
+                        <p>Email:-{{profileC.profile.email}}</p>
+                        <p>About:-{{profileC.profile.about}}</p>
+                        <p ng-repeat="role in profileC.clubdata">{{role.role}} at {{role.club.name}}</p>
+                        <!--  <p>Projects :-</p>
                         <p>Events :- </p> -->
                     </div>
                 </div>
@@ -21,8 +19,31 @@
             </div>
         </div>
     </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h4>Edit Stuff Here</h4>
+            <div class="row">
+                <form class="col s12" enctype="multipart/form-data" method="post">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="ChangeAbout" type="text" name="about" ng-model="profileC.updateuser.about" class="validate">
+                            <label for="ChangeAbout">About</label>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col s12">
+                            <input id="UploadAvatar" type="file" ngf-select ng-model="profileC.avatar" name="avatar" accept="image/*" ngf-max-size="2MB" ngf-model-invalid="errorFile">
+                            <button ng-click="profileC.uploadavatar(profileC.avatar)">Upload</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red">
+        <a class="btn-floating btn-large red btn modal-trigger" href="#modal1">
             <i class="large material-icons">mode_edit</i>
         </a>
     </div>
