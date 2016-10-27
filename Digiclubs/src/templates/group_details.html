@@ -16,7 +16,7 @@
         <div class="col s12" ng-repeat="post in groupDetailsC.clubPosts  | orderBy:'-createdAt' track by $index">
             <div class="card collection hoverable">
                 <div class="card-content black-text collection-item avatar">
-                    <img src="images/a.jpg" alt="" class="circle">
+                    <img src="{{post.user.photo}}" alt="" class="circle">
                     <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a> </span>
                     <div class="post">
                         <p>{{post.post}}</p>

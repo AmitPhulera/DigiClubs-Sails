@@ -39,7 +39,7 @@ module.exports = {
 	},
 	listClubPosts:function(req,res){
 		var club=req.param('clubId');
-		Posts.find({postedIn:club}).populate('user',{select:['name','id']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,data){
+		Posts.find({postedIn:club}).populate('user',{select:['name','id','photo']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,data){
 			if(err)
 				return res.negotiate();
 			
@@ -47,7 +47,7 @@ module.exports = {
 		});
 	},
 	listPublicPosts:function(req,res){
-		Posts.find({privacy:'public'}).populate('user',{select:['name','id']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,data){
+		Posts.find({privacy:'public'}).populate('user',{select:['name','id','photo']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,data){
 			if(err)
 				return res.negotiate();
 			
