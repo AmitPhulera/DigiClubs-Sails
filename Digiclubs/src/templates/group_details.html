@@ -1,68 +1,72 @@
 <div class="row" ng-controller="groupDetailsController as groupDetailsC" ng-init="groupDetailsC.connect()">
-	<div class="col s8">
-	<div class="card">
-		<div class="col s8">
-			<div class="row ">
-		    
-		        <div class="input-field col s12">
-		          <textarea id="post_insert" class="materialize-textarea" ng-model="groupDetailsC.post_content"></textarea>
-		          <label for="post_insert">Ventilate Your Bright Ideas!</label>
-		        </div>
-
-		  </div>
-        </div>
-        <div class="col s2">
-        	<a class="waves-effect waves-light btn" ng-click="groupDetailsC.insertPost()">Say It</a>
-        </div>
-        </div>
-        <div class="col s12" ng-repeat="post in groupDetailsC.clubPosts  | orderBy:'-createdAt' track by $index" >
-          <div class="card collection hoverable">
-            <div class="card-content black-text collection-item avatar">
-              <img src="images/a.jpg" alt="" class="circle">
-              <span ><a href="#/users/{{post.user.id}}">{{post.user.name}}</a> </span>
-              <div class="post">
-                <p>{{post.post}}</p>
-              </div>
+    <div class="col s8">
+        <div class="card">
+            <div class="col s8">
+                <div class="row ">
+                    <div class="input-field col s12">
+                        <textarea id="post_insert" class="materialize-textarea" ng-model="groupDetailsC.post_content"></textarea>
+                        <label for="post_insert">Ventilate Your Bright Ideas!</label>
+                    </div>
+                </div>
             </div>
-            <div class="comment-box" id="{{post.id}}">
-              <div class="comment" ng-repeat="comment in post.comments">
-              	<a href="#/users/{{comment.user}}">{{comment.name}}</a> :- {{comment.comment}}
-              </div>
+            <div class="col s2">
+                <a class="waves-effect waves-light btn" ng-click="groupDetailsC.insertPost()">Say It</a>
             </div>
-            <div class="card-action">
-              <input type="text" style="width:80%;margin-bottom:0"  ng-model="groupDetailsC.comment[$index]"><span ><a ng-click="groupDetailsC.doComment(groupDetailsC.comment[$index],$index,post.id,post.privacy);">Say<i class="small material-icons">send</i></a></span>
-            </div>
-          </div>
         </div>
-	</div>
-	
-
-	<div class="col s4">
-		<ul class="collapsible popout" data-collapsible="accordion">
-		    <li>
-		      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Club Lead</div>
-		      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-		    </li>
-		    <li>
-		      <div class="collapsible-header"><i class="material-icons">place</i>Members</div>
-		      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-		    </li>
-		    <li>
-		      <div class="collapsible-header"><i class="material-icons">whatshot</i>Projects/Events</div>
-		      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-		    </li>
-  		</ul>
-        
-	</div>
-
-	<!-- Adding a an event -->
+        <div class="col s12" ng-repeat="post in groupDetailsC.clubPosts  | orderBy:'-createdAt' track by $index">
+            <div class="card collection hoverable">
+                <div class="card-content black-text collection-item avatar">
+                    <img src="images/a.jpg" alt="" class="circle">
+                    <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a> </span>
+                    <div class="post">
+                        <p>{{post.post}}</p>
+                    </div>
+                </div>
+                <div class="comment-box" id="{{post.id}}">
+                    <div class="comment" ng-repeat="comment in post.comments">
+                        <a href="#/users/{{comment.user}}">{{comment.name}}</a> :- {{comment.comment}}
+                    </div>
+                </div>
+                <div class="card-action">
+                    <input type="text" style="width:80%;margin-bottom:0" ng-model="groupDetailsC.comment[$index]"><span><a ng-click="groupDetailsC.doComment(groupDetailsC.comment[$index],$index,post.id,post.privacy);">Say<i class="small material-icons">send</i></a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s4">
+        <ul class="collapsible popout" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">filter_drama</i>Club Lead</div>
+                <div class="collapsible-body">
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">place</i>Members</div>
+                <div class="collapsible-body">
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">whatshot</i>Projects/Events</div>
+                <div class="collapsible-body">
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- Adding a an event -->
     <div class="fixed-action-btn " style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red modal-trigger" data-target="add_event">
+        <a class="btn-floating btn-large red">
             <i class="large material-icons">add</i>
         </a>
+        <ul>
+            <li><a class="btn tooltipped btn-floating yellow darken-1 modal-trigger" data-position="left" data-delay="50" data-tooltip="Add Club" href="#add_club"><i class="material-icons" data-target="add_club">format_quote</i></a></li>
+            <li><a class="btn btn-floating yellow darken-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Add Event To Clubs" data-target="add_event" href="#add_event"><i class="material-icons" >format_quote</i></a></li>
+        </ul>
     </div>
-    <!-- Modal Structure -->
-    <div id="add_event" class="modal">
+    <!-- Add Event Modal Structure -->
+    <div id="add_event" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>Create An Event</h4>
             <div class="row">
@@ -117,14 +121,70 @@
                                 <label for="branch_4">All</label>
                             </div>
                         </div>
-                        <div class="row">
-                        </div>
+                    </div>
                 </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="groupDetailsC.addEvent()">Add</a>
             </div>
         </div>
-    
+        <div class="modal-footer">
+            <a class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="groupDetailsC.addEvent()">Add</a>
+        </div>
+    </div>
+    <!-- Modal for adding club -->
+    <div id="add_club" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Add Club</h4>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Club Name" id="club_name" type="text" class="validate" ng-model="groupDetailsC.club.name">
+                            <label for="club_name">Club Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Club Lead" id="club_lead" type="text" class="validate auto" ng-model="groupDetailsC.clubLead" ng-keyup="(groupDetailsC.clubLead.length == 2) && groupDetailsC.listNames()">
+                            <label for="club_lead">Club Lead</label>
+                            <ul class="collection" ng-show="groupDetailsC.nameListShow">
+                                <li class="collection-item avatar" ng-repeat="list in groupDetailsC.nameList | orderBy:groupDetailsC.clubLead" ng-click="groupDetailsC.assign(list.id,list.name)">
+                                    <img src="{{list.picture}}" alt="" class="circle">
+                                    <span class="title center">{{list.name}}</span>
+                                    
+                                </li>
+                            </ul>    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="event_details" class="materialize-textarea" ng-model="groupDetailsC.club.detail"></textarea>
+                            <label for="event_details">Club Details</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Faculty Advisor" id="club_faculty" type="text" class="validate" ng-model="groupDetailsC.club.faculty">
+                            <label for="club_faculty">Faculty Advisor</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field s12">
+                            <div class="row">
+                                <input type="checkbox" id="Cbranch_1" class="col s4" ng-model="groupDetailsC.Cbranch[0]" />
+                                <label for="Cbranch_1">CS</label>
+                                <input type="checkbox" id="Cbranch_2" class="col s4" ng-model="groupDetailsC.Cbranch[1]" />
+                                <label for="Cbranch_2">ECE</label>
+                                <input type="checkbox" id="branch_3" class="col s4" ng-model="groupDetailsC.Cbranch[2]" />
+                                <label for="Cbranch_3">Mechanical</label>
+                                <input type="checkbox" id="Cbranch_4" class="col s4" ng-model="groupDetailsC.Cbranch[3]" />
+                                <label for="Cbranch_4">All</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class=" modal-action modal-close waves-effect waves-green btn-flat center" ng-click="groupDetailsC.addClub()">Add</a>
+        </div>
+    </div>
 </div>

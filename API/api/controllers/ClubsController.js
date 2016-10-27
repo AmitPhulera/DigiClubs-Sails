@@ -24,5 +24,30 @@ module.exports = {
             console.log(data);
             res.ok(data);
         });
+    },
+    add:function(req,res){
+        console.log(req.allParams());
+        var club={};
+        club.name=req.param('name');
+        club.detail=req.param('detail');
+        club.faculty=req.param('faculty');
+        club.branches=req.param('branches');
+        leadId=req.param('lead');
+        Clubs.create(club).exec(function(err,newClub){
+            if(err){
+                return res.negotiate();
+            }
+            var role={
+                role:"admin",
+                user_id:leadId,
+                club:newClub.id
+            };
+            Roles.create(role).exec(function(err,role){
+                res.ok(newClub);
+            });
+
+            
+        });
+        
     }
 };

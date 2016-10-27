@@ -35,6 +35,9 @@ module.exports = {
 	    	collection:'roles',
 	    	via:'club'
 	    },
+	    faculty:{
+	    	type:'string'
+	    },
 	}
 };
 
