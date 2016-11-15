@@ -5,7 +5,7 @@
         An app that would give a platform to the clubs and communites of a college and would take their working online. 
     </description>
     <author email="amitphulera999@gmail.com" href="http://amitphulera.com">
-        PhoneGap Team
+        TriDevs
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />

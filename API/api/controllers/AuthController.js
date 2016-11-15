@@ -12,10 +12,20 @@ var passport = require('passport');
  * @param {Object} info Info if some error occurs
  * @private
  */
+function _onPassportfbAuth(req, res, error, user, info) {
+  if (error) return res.serverError(error);
+  if (!user) return res.unauthorized(null, info && info.code, info && info.message);
+  res.set("content-type", "*");
+  return res.jsonp({
+    // TODO: replace with new type of cipher service
+    token: CipherService.createToken(user),
+    user: user
+  });
+}
 function _onPassportAuth(req, res, error, user, info) {
   if (error) return res.serverError(error);
   if (!user) return res.unauthorized(null, info && info.code, info && info.message);
- 
+  res.set("Access-Control-Allow-Origin", "*");
   return res.ok({
     // TODO: replace with new type of cipher service
     token: CipherService.createToken(user),
@@ -53,4 +63,7 @@ module.exports = {
     passport.authenticate('local', 
       _onPassportAuth.bind(this, req, res))(req, res);
   },
+  signinfb:function(req,res){
+     passport.authenticate('facebook', { authType: 'rerequest', scope: ['user_friends','email','user_about_me'] }, _onPassportfbAuth.bind(this, req, res))(req, res);
+  }
 };

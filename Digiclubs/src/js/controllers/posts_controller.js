@@ -37,7 +37,7 @@ angular.module('DigiClubs.controllers.Posts', [])
 
     /**********Socket Shit****************/
 
-    io.sails.url = "http://localhost:1337";
+    //io.sails.url = Server;
 
     /*io.socket.on('connect', function() {
         io.socket.on('posts', function(msg) {

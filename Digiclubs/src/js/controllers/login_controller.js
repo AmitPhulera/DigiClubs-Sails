@@ -1,6 +1,6 @@
 angular.module('DigiClubs.controllers.Login', [])
 
-.controller('loginController', function($scope, $http, $location, Authenticate,Server) {
+.controller('loginController', function($scope, $http,$window, $sce, $location, Authenticate, Server) {
     /****************************************************************
                 Authentication Wali BAketi !!!
     *****************************************************************/
@@ -27,10 +27,10 @@ angular.module('DigiClubs.controllers.Login', [])
     var theapp = Server;
     /*****************************************************************************/
 
-    
-    
+
+
     var user = {};
-    
+
     // LOGIN Function
     $scope.try_login = function() {
         console.log($scope.login);
@@ -50,7 +50,30 @@ angular.module('DigiClubs.controllers.Login', [])
                 },
                 function b(response) {
                     Materialize.toast(response.statusText, 4000);
-                    console.log(response)
+                    console.log(response);
                 });
-    }
+    };
+    $scope.try_login_fb = function() {
+        var t = $sce.trustAsResourceUrl(theapp + 'auth/signinfb');
+        
+        $http.jsonp(theapp + 'auth/signinfb',{jsonpCallbackParam: 'callback'})
+            .success(function a(response) {
+                console.log('success');
+                //console.log(response);
+                // var auth = {
+                //     user: response.data.user,
+                //     token: response.data.token
+                // };
+                // Materialize.toast('Logging In', 2000);
+                // Authenticate.set('token', response.data.token);
+                // Authenticate.setObject('user', response.data.user);
+                // $location.path('/posts');
+
+            }).
+        error(function b(response) {
+            //Materialize.toast(response.statusText, 4000);
+            console.log(response);
+        });
+
+    };
 });
