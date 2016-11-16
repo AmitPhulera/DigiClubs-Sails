@@ -41,11 +41,11 @@ module.exports = {
 
 
     upload: function(req, res) {
-        req.file('file').upload({ dirname: require('path').resolve(sails.config.appPath, 'assets/images'), saveAs: req.param('userid') + '.jpg' }, function(err, files) {
+        req.file('file').upload({ dirname: sails.config.appPath+'/attachments/images/' , saveAs: req.param('userid') + '.jpg' }, function(err, files) {
             if (err)
                 return res.serverError(err);
-            var theurl = req.baseUrl + '/images/' + req.param('userid') + '.jpg';
-            Users.update({'id':req.param('userid')},{ 'photo': theurl }).exec(function(err, data) {
+            var theurl = req.baseUrl + '/images/attachments/' + req.param('userid') + '.jpg';
+            Users.update({'id':req.param('userid')},{ 'photo': theurl , 'about' : req.param('about')}).exec(function(err, data) {
                 if (err)
                     console.log(err);
                 else

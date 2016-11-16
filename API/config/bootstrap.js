@@ -9,9 +9,16 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-module.exports.bootstrap = function(cb) {
+var fs = require('fs')
+  , path = require('path');
 
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+module.exports.bootstrap = function (cb) {
+  // Whatever else you want to bootstrap...
+
+  var postsSource = path.join(process.cwd(), 'attachments/images')
+    , postsDest = path.join(process.cwd(), '.tmp/public/images/attachments');
+
+  fs.symlink(postsSource, postsDest, function(err) {
+    cb(err);
+  });
 };
