@@ -3,12 +3,16 @@
         <div class="col s12 card sticky-action" ng-repeat="event in eventsC.allEvents track by $index">
             <div class="card-horizontal">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="images/a1.jpg">
+                    <img style="height: 200px;width: 200px;"class="activator" src={{event.photo}}>
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{{event.name}}<i class="material-icons right">more_vert</i>
         <p>{{event.detail}}</p>
+      </span>
+                        <span>
+                <input id="UploadAvatar" type="file" ngf-select ng-model="event.avatar" name="avatar" accept="image/*" ngf-max-size="2MB" ngf-model-invalid="errorFile">
+                            <button ng-click="eventsC.uploadavatar(event.avatar,event.id)">Upload</button>
       </span>
                         <!-- <p><a href="#">Show More</a></p> -->
                     </div>
@@ -24,4 +28,3 @@
         </div>
     </div>
 </div>
-    

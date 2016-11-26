@@ -17,6 +17,11 @@ module.exports = {
 	    user:{
 	    	model:'Users'
 	    },
+	    photo:{
+	    	type: 'string',
+            defaultsTo: 'http://localhost:1337/images/attachments/events/default.jpg',
+            url: true
+	    },
 	    date:{
 	    	type:'datetime'
 	    },

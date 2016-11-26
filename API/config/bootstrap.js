@@ -15,10 +15,17 @@ var fs = require('fs')
 module.exports.bootstrap = function (cb) {
   // Whatever else you want to bootstrap...
 
-  var postsSource = path.join(process.cwd(), 'attachments/images')
-    , postsDest = path.join(process.cwd(), '.tmp/public/images/attachments');
+  var postsSource = path.join(process.cwd(), 'attachments/images/profile')
+    , postsDest = path.join(process.cwd(), '.tmp/public/images/profile');
+
+  var postsSource1 = path.join(process.cwd(), 'attachments/images/events')
+    , postsDest1= path.join(process.cwd(), '.tmp/public/images/events');
 
   fs.symlink(postsSource, postsDest, function(err) {
+    fs.symlink(postsSource1, postsDest1, function(err) {
     cb(err);
   });
+  });
+ 
+ // cb();
 };
