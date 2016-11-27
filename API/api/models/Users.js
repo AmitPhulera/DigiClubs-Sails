@@ -19,7 +19,7 @@ module.exports = {
         },
         photo: {
             type: 'string',
-            defaultsTo: 'http://localhost:1337/images/attachments/profile/default.jpg',
+            defaultsTo: 'http://localhost:1337/images/profile/default.jpg',
             url: true
         },
         socialProfiles: {

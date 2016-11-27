@@ -1,6 +1,6 @@
 angular.module('DigiClubs.controllers.Clubs', [])
 
-.controller('clubController', function($http, $location, Authenticate,Server) {
+.controller('clubController', function($http, $location, Authenticate,Server,Upload) {
     /****************************************************************
                 Authentication Wali BAketi !!!
         *****************************************************************/
@@ -37,5 +37,29 @@ angular.module('DigiClubs.controllers.Clubs', [])
             .then(function(response) {
                 sc.clubs = response.data;
             }, function(err) { console.log(err); });
+    };
+
+    sc.uploadavatar = function(file,c_id)
+    {   
+        console.log(c_id +"in controller");
+        var obj={
+            url: theapp+'clubs/upload',
+            data: { clubid: c_id, file: file }
+            
+        };
+        console.log(obj);
+        file.upload = Upload.upload(obj);
+
+        file.upload.then(function(response) {
+            Materialize.toast('Successfully uploaded',1000);
+            console.log(response);
+        }, function(response) {
+            if (response.status > 0){
+                sc.errorMsg = response.status + ': ' + response.data;
+                console.log(sc.errorMsg);
+            }
+            
+        }
+        );
     };
 });

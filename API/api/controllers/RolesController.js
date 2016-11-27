@@ -20,7 +20,7 @@ module.exports = {
 
 						if(err)
 							return res.badRequest();
-						obj={clubname:user.club.name,clubdetails:user.club.detail,club_id:user.club.id,admin:user.user_id.name,admin_id:user.user_id.id,member:found};
+						obj={clubname:user.club.name,clubdetails:user.club.detail,club_photo:user.club.photo,club_id:user.club.id,admin:user.user_id.name,admin_id:user.user_id.id,member:found};
 
 						arr.push(obj);
 						callback();

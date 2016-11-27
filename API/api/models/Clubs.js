@@ -24,6 +24,11 @@ module.exports = {
 	    branches:{
 			type:'array'
 		},
+	    photo:{
+	    	type: 'string',
+            defaultsTo: 'http://localhost:1337/images/clubs/default.jpg',
+            url: true
+	    },
 		reviews:{
 			type:'integer',
 		},
