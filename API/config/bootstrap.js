@@ -21,9 +21,15 @@ module.exports.bootstrap = function (cb) {
   var postsSource1 = path.join(process.cwd(), 'attachments/images/events')
     , postsDest1= path.join(process.cwd(), '.tmp/public/images/events');
 
+  var postsSource2 = path.join(process.cwd(), 'attachments/images/clubs')
+    , postsDest2= path.join(process.cwd(), '.tmp/public/images/clubs');
+
+
   fs.symlink(postsSource, postsDest, function(err) {
     fs.symlink(postsSource1, postsDest1, function(err) {
+       fs.symlink(postsSource2, postsDest2, function(err) {
     cb(err);
+  });
   });
   });
  
