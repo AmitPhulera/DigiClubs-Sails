@@ -36,16 +36,37 @@
         margin-top: 1rem;
         cursor: pointer;
     }
-    
-    .card .comment-box .comment span {
+    /* .card .comment-box .comment span {
         display: block;
         text-indent: -4rem;
         margin-left: 5rem;
+    } */
+    
+    .comment-box {
+        margin-left: 3rem;
     }
     
     .card .card-action span.comment-data {
         max-height: 20px;
         overflow: hidden;
+    }
+    
+    .post {
+        margin-top: .6rem;
+    }
+    
+    .commentor {
+        margin-left: 3.8rem;
+        margin-top: -3.0rem;
+        display: block;
+    }
+    
+    .comment_data {
+        margin-left: 3.8rem;
+    }
+    
+    .comment {
+        margin-top: 0.7rem;
     }
     </style>
     <div class="row">
@@ -72,18 +93,28 @@
             <div class="card collection hoverable">
                 <div class="card-content black-text collection-item avatar">
                     <img src="{{post.user.photo}}" alt="" class="circle">
-                    <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a> > <a href="#/clubs/{{post.postedIn.id}}">{{post.postedIn.name}}</a></span>
+                    <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a>  </span>
+                    <div class="chip right">
+                        <a href="#/clubs/{{post.postedIn.id}}">{{post.postedIn.name}}</a>
+                    </div>
+                    <div class="divider"></div>
                     <div class="post">
                         <p>{{post.post}}</p>
                     </div>
                 </div>
+                <!-- {{postC.theapp}}images/profile/{{comment.user}}.jpg -->
                 <div class="comment-box" id="{{post.id}}">
                     <div class="comment" ng-repeat="comment in post.comments">
-                        <a href="#/users/{{comment.user}}">{{comment.name}}</a> :- {{comment.comment}}
+                        <img src="{{post.user.photo}}" alt="" class="circle" style="height:42px;width:42px;margin-top:4px">
+                        <span class="commentor"><a href="#/users/{{comment.user}}">{{comment.name}}</a> </span>
+                        <div class="comment_data">
+                            {{comment.comment}}
+                        </div>
+                        <!-- <div class="divider"></div> -->
                     </div>
                 </div>
                 <div class="card-action">
-                    <input type="text" style="width:80%;margin-bottom:0" ng-model="postC.comment[$index]"><span><a ng-click="postC.doComment(post.id,postC.comment[$index],$index,post.privacy,post.postedIn.id);">Say<i class="small material-icons">send</i></a></span>
+                    <input type="text" style="width:80%;margin-bottom:0" ng-model="postC.comment[$index]"><span><a ng-click="postC.doComment(post.id,postC.comment[$index],$index,post.privacy,post.postedIn.id);"><i class="small material-icons">send</i></a></span>
                 </div>
             </div>
         </div>

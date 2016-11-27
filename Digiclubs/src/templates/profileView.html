@@ -1,0 +1,22 @@
+<div ng-controller="profileViewController as profileC" ng-init="profileC.getProfile()">
+    <div class="row">
+        <div class="col s12 ">
+            <div class="card collection">
+                <div class="card-content black-text collection-item avatar">
+                    <img src="{{profileC.profile.photo}}" alt="" class="circle">
+                    <span class="card-title">{{profileC.profile.name}}</span>
+                    <div class="user-details">
+                        <p>Email:-{{profileC.profile.email}}</p>
+                        <p>About:-{{profileC.profile.about}}</p>
+                        <p ng-repeat="role in profileC.clubdata">{{role.role}} at {{role.club.name}}</p>
+                        <!--  <p>Projects :-</p>
+                        <p>Events :- </p> -->
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#">Download Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,23 +1,102 @@
- <div class="row" ng-controller="loginController as loginC">
-    <form class="col s12" >
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix ">account_circle</i>
-          <input id="user_email" type="text" ng-model="login.email" class="validate">
-          <label for="icon_prefix">Email</label>
+<div class="row" ng-controller="loginController as loginC">
+    <form class="col s12">
+        <div class="row">
+            <div class="card z-depth-3 hoverable" style="margin-top:5rem">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix ">account_circle</i>
+                    <input id="user_email" type="text" ng-model="login.email" class="validate">
+                    <label for="icon_prefix">Email</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix ">mode_edit</i>
+                    <input id="user_password" type="password" ng-model="login.password" class="validate">
+                    <label for="icon_telephone">Password</label>
+                </div>
+                <div class="input-field col s6 center">
+                    <a class="waves-effect waves-light btn" target="_blank" ng-click="try_login()">SignIn</a> OR
+                </div>
+                <div class="col s3" style="">
+                    <a class="" target="_blank" ng-click="authenticate('facebook')">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="45px" height="45px" viewBox="0 0 60.734 60.733" style="enable-background:new 0 0 60.734 60.733;" xml:space="preserve">
+                            <g>
+                                <path d="M57.378,0.001H3.352C1.502,0.001,0,1.5,0,3.353v54.026c0,1.853,1.502,3.354,3.352,3.354h29.086V37.214h-7.914v-9.167h7.914   v-6.76c0-7.843,4.789-12.116,11.787-12.116c3.355,0,6.232,0.251,7.071,0.36v8.198l-4.854,0.002c-3.805,0-4.539,1.809-4.539,4.462   v5.851h9.078l-1.187,9.166h-7.892v23.52h15.475c1.852,0,3.355-1.503,3.355-3.351V3.351C60.731,1.5,59.23,0.001,57.378,0.001z" fill="#006DF0" />
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+                <div class="col s3" style="">
+                    <a class="" target="_blank" ng-click="authenticate('google')"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="45px" height="45px" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+   viewBox="0 0 455.73 455.73" style="enable-background:new 0 0 455.73 455.73;" xml:space="preserve">
+<path style="fill:#DD4B39;" d="M0,0v455.73h455.73V0H0z M265.67,247.037c-7.793,51.194-45.961,80.543-95.376,80.543
+  c-55.531,0-100.552-45.021-100.552-100.552c0-55.517,45.021-100.538,100.552-100.538c26.862,0,50.399,9.586,67.531,26.226
+  l-28.857,28.857c-9.773-9.846-23.147-15.094-38.674-15.094c-32.688,0-59.189,27.874-59.189,60.548
+  c0,32.703,26.501,59.768,59.189,59.768c27.397,0,48.144-13.243,54.129-39.758h-54.129v-40.38h95.131
+  c1.142,6.506,1.72,13.315,1.72,20.37C267.144,234.025,266.638,240.69,265.67,247.037z M386.419,234.517h-35.233v35.218H326.16
+  v-35.218h-35.233v-25.041h35.233v-35.233h25.026v35.233h35.233V234.517z"/>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg></a>
+                </div>
+            </div>
         </div>
-        <div class="input-field col s12">
-          <i class="material-icons prefix ">mode_edit</i>
-          <input id="user_password" type="password" ng-model="login.password" class="validate">
-          <label for="icon_telephone">Password</label>
-        </div>
-        <div class="input-field col s12">
-        	<a class="waves-effect waves-light btn" ng-click="try_login()">SignIn</a>
-        </div>
-        <div class="input-field col s12 hidden" style="display:none">
-          <a class="waves-effect waves-light btn" ng-click="try_login_fb()"  >SignInFB</a>
-        </div>
-      </div>
     </form>
-  </div>
- <!--ng-click="try_login_fb() href="http://localhost:1337/auth/signinfb" -->
+</div>
+<!--ng-click="try_login_fb() href="http://localhost:1337/auth/signinfb" -->

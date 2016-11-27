@@ -12,4 +12,5 @@ angular.module('DigiClubs.controllers.Main', [])
  	$scope.reload=function(){
  		$window.location.reload();
  	};
+
 });

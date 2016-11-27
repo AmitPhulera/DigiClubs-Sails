@@ -26,6 +26,7 @@ var config = {
       './bower_components/ng-file-upload/ng-file-upload.min.js',
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
       './bower_components/jquery/dist/jquery.min.js',
+      './bower_components/satellizer/dist/satellizer.min.js',
       './bower_components/materialize/dist/js/materialize.min.js'
       
     ],

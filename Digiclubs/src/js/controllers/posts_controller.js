@@ -1,7 +1,8 @@
+
 angular.module('DigiClubs.controllers.Posts', [])
 
-.controller('PostsController', function(Authenticate,Server, $location, $http,$scope) {
-    
+.controller('PostsController', function(Authenticate, Server, $location, $http, $scope) {
+
     /****************************************************************
                 Authentication Wali BAketi !!!
     *****************************************************************/
@@ -14,17 +15,17 @@ angular.module('DigiClubs.controllers.Posts', [])
 
 
     /****************************************************************
-    Master Object 'sc' use this to acess elements in every controller
+    Master Object 'sc' use this to access elements in every controller
     *****************************************************************/
     var sc = this;
     /*****************************************************************/
 
-    
+
     /******************************************************************************
-    Object 'user'. Use 'theapp' for api calls to server,returns address to server
-    *******************************************************************************/    
+    Use 'theapp' for api calls to server,returns address to server
+    *******************************************************************************/
     var theapp = Server;
-   /*****************************************************************************/
+    /*****************************************************************************/
 
     /******************************************************************
     User Object 'user'. Use this to acess user info in every controller
@@ -34,23 +35,6 @@ angular.module('DigiClubs.controllers.Posts', [])
 
 
     sc.post_list = [];
-
-    /**********Socket Shit****************/
-
-    //io.sails.url = Server;
-
-    /*io.socket.on('connect', function() {
-        io.socket.on('posts', function(msg) {
-            console.log(msg);
-            if (msg.verb == 'created') {
-                console.log(msg.data);
-                sc.post_list.push(msg.data);
-                //console.log($scope.main.post_list);
-                $scope.$apply();
-            }
-
-        });
-    });*/
 
     io.socket.on('commentt', function(msg) {
         console.log(msg);
@@ -64,12 +48,12 @@ angular.module('DigiClubs.controllers.Posts', [])
         });
     });
 
-    io.socket.on('publicPost',function(msg){
+    io.socket.on('publicPost', function(msg) {
 
-            console.log(msg);
-            sc.post_list.push(msg);
-            $scope.$apply();
-        
+        console.log(msg);
+        sc.post_list.push(msg);
+        $scope.$apply();
+
     });
 
     /*****************Ended In Peace****************/
@@ -94,7 +78,7 @@ angular.module('DigiClubs.controllers.Posts', [])
         });
     };
 
-    sc.doComment = function(postId, comment, index, privacy,clubId) {
+    sc.doComment = function(postId, comment, index, privacy, clubId) {
         comm = {
             data: {
                 comment: comment,
@@ -102,8 +86,8 @@ angular.module('DigiClubs.controllers.Posts', [])
                 user: user.id,
                 name: user.name
             },
-            privacy:privacy,
-            club:clubId
+            privacy: privacy,
+            club: clubId
         };
         console.log(comm);
         $http.post(theapp + 'comments/saveComment', { data: comm }).then(function(res) {
@@ -117,3 +101,4 @@ angular.module('DigiClubs.controllers.Posts', [])
     };
 
 });
+

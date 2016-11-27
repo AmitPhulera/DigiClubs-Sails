@@ -40,8 +40,8 @@
 ################################################
 
 #config/local.js
-#node_modules
-
+node_modules
+assets
 
 
 
@@ -67,8 +67,8 @@
 # 
 ################################################
 
-#node_modules
-#bower_components
+node_modules
+bower_components
 
 
 

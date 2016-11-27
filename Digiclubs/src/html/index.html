@@ -10,6 +10,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
     <link rel="stylesheet" href="css/materialize.min.css" />
     <link rel="stylesheet" href="css/material-icons.css" />
+    <style>
+      .side-nav li>a>i.material-icons{
+        height: 24px;
+      }
+    </style>
     <!-- inject:js -->
     <script src="js/app.min.js"></script>
   </head>
@@ -21,26 +26,26 @@
       <!-- Navbars -->
       <div class="navbar-fixed">
       <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper indigo lighten-3">
           <a href="#!" class="brand-logo">DigiClubs</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">list</i></a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="#posts">Posts</a></li>
-            <li><a href="#clubs">Clubs</a></li>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="" ng-click="inValidate()">Logout</a></li>
+            <li><a href="#posts"><i class="material-icons">forum</i></a></li>
+            <li><a href="#clubs"><i class="material-icons">group</i></a></li>
+            <li><a href="#profile"><i class="material-icons">account_box</i></a></li>
+            <li><a href="#events"><i class="material-icons">event</i></a></li>
+            <li><a href="#contact"><i class="material-icons">contact_mail</i></a></li>
+            <li><a href="" ng-click="inValidate()"><i class="material-icons">exit_to_app</i></a></li>
 
           </ul>
           <ul class="side-nav" id="mobile-demo">
             <li style="height:40px"></li>
-            <li><a href="#posts">Posts</a></li>
-            <li><a href="#clubs">Clubs</a></li>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="" ng-click="inValidate()">Logout</a></li>
+            <li><a href="#posts"><i class="material-icons">forum</i>Posts</a></li>
+            <li><a href="#clubs"><i class="material-icons">group</i>Clubs</a></li>
+            <li><a href="#profile"><i class="material-icons">account_box</i>Profile</a></li>
+            <li><a href="#events"><i class="material-icons">event</i>Events</a></li>
+            <li><a href="#contact"><i class="material-icons">contact_mail</i>Contact</a></li>
+            <li><a href="" ng-click="inValidate()"><i class="material-icons">exit_to_app</i>Logout</a></li>
           </ul>
         </div>
       </nav>

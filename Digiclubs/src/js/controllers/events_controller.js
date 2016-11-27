@@ -67,3 +67,4 @@ angular.module('DigiClubs.controllers.Events', [])
         );
     };
 });
+

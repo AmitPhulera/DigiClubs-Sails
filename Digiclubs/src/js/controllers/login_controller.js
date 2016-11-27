@@ -1,6 +1,6 @@
 angular.module('DigiClubs.controllers.Login', [])
 
-.controller('loginController', function($scope, $http,$window, $sce, $location, Authenticate, Server) {
+.controller('loginController', function($scope, $http,$auth,$window, $sce, $location, Authenticate, Server) {
     /****************************************************************
                 Authentication Wali BAketi !!!
     *****************************************************************/
@@ -12,6 +12,7 @@ angular.module('DigiClubs.controllers.Login', [])
         return;
     }
     /*****************************************************************/
+
 
 
     /****************************************************************
@@ -30,6 +31,16 @@ angular.module('DigiClubs.controllers.Login', [])
 
 
     var user = {};
+    $scope.authenticate = function(provider) {
+      $auth.authenticate(provider)
+            .then(function(){
+                var usr=$auth.getPayload();
+                console.log('done');
+                console.log(usr);
+                Authenticate.setObject('user', usr);
+                $location.path('/posts');
+            });
+    };
 
     // LOGIN Function
     $scope.try_login = function() {
@@ -53,10 +64,16 @@ angular.module('DigiClubs.controllers.Login', [])
                     console.log(response);
                 });
     };
+    
+    
     $scope.try_login_fb = function() {
-        var t = $sce.trustAsResourceUrl(theapp + 'auth/signinfb');
+        console.log('here');
+        /*var options ="location=no,hardwareback=no,zoom=no";
+            var ref = cordova.InAppBrowser.open(Server+'auth/signinfb','_blank', options);*/
+        window.open('http://localhost:1337/auth/signinfb',
+    "loginWindow");
         
-        $http.jsonp(theapp + 'auth/signinfb',{jsonpCallbackParam: 'callback'})
+        /*$http.jsonp(theapp + 'auth/signinfb',{jsonpCallbackParam: 'callback'})
             .success(function a(response) {
                 console.log('success');
                 //console.log(response);
@@ -74,6 +91,6 @@ angular.module('DigiClubs.controllers.Login', [])
             //Materialize.toast(response.statusText, 4000);
             console.log(response);
         });
-
+*/
     };
 });
