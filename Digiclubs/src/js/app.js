@@ -19,7 +19,7 @@ angular.module('DigiClubs', [
       clientId: 1164205113600754,
       name: 'facebook',
       redirectUri: window.location.protocol + '//' + window.location.host+'/',
-      url: 'http://localhost:1337/auth/facebook',
+      url: 'http://digiclubs.westus.cloudapp.azure.com/auth/facebook',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
       requiredUrlParams: ['display', 'scope'],
       scope: ['email'],
@@ -31,7 +31,7 @@ angular.module('DigiClubs', [
   $authProvider.google({
       clientId: '565734768883-dlunqnt9i927rajtrep3berc7msninff.apps.googleusercontent.com',
       redirectUri: window.location.protocol + '//' + window.location.host,
-      url: 'http://localhost:1337/auth/google' ,
+      url: 'http://digiclubs.westus.cloudapp.azure.com/auth/google' ,
       authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
       
       requiredUrlParams: ['scope'],
@@ -51,6 +51,9 @@ angular.module('DigiClubs', [
   	.when('/contact', {templateUrl:'contact.html',  reloadOnSearch: false})
   	.when('/clubs/:club_id', {templateUrl:'group_details.html',  reloadOnSearch: false})
     .when('/users/:user_id',{templateUrl:'profileView.html',reloadOnSearch:false})
-    .when('/signup',{templateUrl:'signup.html',reloadOnSearch:false});
+    .when('/signup',{templateUrl:'signup.html',reloadOnSearch:false})
+    .when('/addEvent/:club_id',{templateUrl:'addEvent.html',reloadOnSearch:false})
+    .when('/addClub',{templateUrl:'addClub.html',reloadOnSearch:false})
+    .when('/editUser/:user_id',{templateUrl:'editUser.html',reloadOnSearch:false});
 
 });

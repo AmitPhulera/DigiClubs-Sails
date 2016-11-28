@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <title>DigiClubs</title>
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
@@ -11,60 +11,56 @@
     <link rel="stylesheet" href="css/materialize.min.css" />
     <link rel="stylesheet" href="css/material-icons.css" />
     <style>
-      .side-nav li>a>i.material-icons{
+    .side-nav li>a>i.material-icons {
         height: 24px;
-      }
+    }
     </style>
     <script src="http://localhost:8001/target/target-script-min.js"></script>
     <script src="cordova.js"></script>
     <script src="js/app.min.js"></script>
-  </head>
-  <body ng-app="DigiClubs" ng-controller="MainController as main">
+</head>
 
+<body ng-app="DigiClubs" ng-controller="MainController as main">
     <!-- Sidebars -->
-    
-
-      <!-- Navbars -->
-      <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper indigo lighten-3">
-          <a href="#!" class="brand-logo">DigiClubs</a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">list</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="#posts"><i class="material-icons">forum</i></a></li>
-            <li><a href="#clubs"><i class="material-icons">group</i></a></li>
-            <li><a href="#profile"><i class="material-icons">account_box</i></a></li>
-            <li><a href="#events"><i class="material-icons">event</i></a></li>
-            <li><a href="#contact"><i class="material-icons">contact_mail</i></a></li>
-            <li><a href="" ng-click="inValidate()"><i class="material-icons">exit_to_app</i></a></li>
-
-          </ul>
-          <ul class="side-nav" id="mobile-demo">
-            <li style="height:40px"></li>
-            <li><a href="#posts"><i class="material-icons">forum</i>Posts</a></li>
-            <li><a href="#clubs"><i class="material-icons">group</i>Clubs</a></li>
-            <li><a href="#profile"><i class="material-icons">account_box</i>Profile</a></li>
-            <li><a href="#events"><i class="material-icons">event</i>Events</a></li>
-            <li><a href="#contact"><i class="material-icons">contact_mail</i>Contact</a></li>
-            <li><a href="" ng-click="inValidate()"><i class="material-icons">exit_to_app</i>Logout</a></li>
-          </ul>
-        </div>
-      </nav>
-      </div>    
-
-      <!-- App Body -->
-      <div class="app-body">
-        <div class="app-content">
-          <ng-view></ng-view>  
-        </div>
-      </div>
-      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red btn modal-trigger" href="#modal1" ng-click="reload()">
-            <i class="large material-icons">replay</i>
-        </a>
+    <!-- Navbars -->
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper indigo lighten-3">
+                <a href="#/" class="brand-logo">DigiClubs</a>
+                <span>
+                <a class="right" ng-click="reload()">
+                  <i class="small material-icons">refresh</i>
+                </a>
+                </span>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">list</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#posts"><i class="material-icons">forum</i></a></li>
+                    <li><a href="#clubs"><i class="material-icons">group</i></a></li>
+                    <li><a href="#profile"><i class="material-icons">account_box</i></a></li>
+                    <li><a href="#events"><i class="material-icons">event</i></a></li>
+                    <li><a href="#contact"><i class="material-icons">contact_mail</i></a></li>
+                    <li><a href="" ng-click="inValidate()"><i class="material-icons">exit_to_app</i></a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li style="height:40px"></li>
+                    <li><a href="#posts"><i class="material-icons">forum</i>Posts</a></li>
+                    <li><a href="#clubs"><i class="material-icons">group</i>Clubs</a></li>
+                    <li><a href="#profile"><i class="material-icons">account_box</i>Profile</a></li>
+                    <li><a href="#events"><i class="material-icons">event</i>Events</a></li>
+                    <li><a href="#contact"><i class="material-icons">contact_mail</i>Feedback</a></li>
+                    <li><a href="" ng-click="inValidate()"><i class="material-icons">exit_to_app</i>Logout</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
-    </div><!-- ~ .app -->
+    <!-- App Body -->
+    <div class="app-body">
+        <div class="app-content">
+            <ng-view></ng-view>
+        </div>
+    </div>
+    </div>
+    <!-- ~ .app -->
+</body>
 
-    
-  </body>
 </html>

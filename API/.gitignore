@@ -40,12 +40,8 @@
 ################################################
 
 #config/local.js
-node_modules
-assets
-
-
-
-
+assets/
+assets/*
 
 ################################################
 # Dependencies
@@ -68,9 +64,10 @@ assets
 # 
 ################################################
 
-node_modules
-bower_components
-
+node_modules/
+bower_components/
+node_modules/*
+bower_components/*
 
 
 

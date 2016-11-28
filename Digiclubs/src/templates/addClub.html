@@ -1,0 +1,59 @@
+<div id="add_club" class="row container" ng-controller="groupDetailsController as groupDetailsC">
+    <div class="card">
+        <h4 class="center nav green lighten-3 grey-text">Add Club</h4>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s10 center">
+                        <input placeholder="Club Name" id="club_name" type="text" class="validate" ng-model="groupDetailsC.club.name">
+                        <label for="club_name">Club Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 center">
+                        <input placeholder="Club Lead" id="club_lead" type="text" class="validate auto" ng-model="groupDetailsC.clubLead" ng-keyup="(groupDetailsC.clubLead.length == 2) && groupDetailsC.listNames()">
+                        <label for="club_lead">Club Lead</label>
+                        <ul class="collection" ng-show="groupDetailsC.nameListShow">
+                            <li class="collection-item avatar" ng-repeat="list in groupDetailsC.nameList" ng-click="groupDetailsC.assign(list.id,list.name)">
+                                <img src="{{list.picture}}" alt="" class="circle">
+                                <span class="title center">{{list.name}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 center">
+                        <textarea id="event_details" class="materialize-textarea" ng-model="groupDetailsC.club.detail"></textarea>
+                        <label for="event_details">Club Details</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 center">
+                        <input placeholder="Faculty Advisor" id="club_faculty" type="text" class="validate" ng-model="groupDetailsC.club.faculty">
+                        <label for="club_faculty">Faculty Advisor</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field s10 center">
+                        <div class="row">
+                            <input type="checkbox" id="Cbranch_1" class="col s4" ng-model="groupDetailsC.Cbranch[0]" />
+                            <label for="Cbranch_1">CS</label>
+                            <input type="checkbox" id="Cbranch_2" class="col s4" ng-model="groupDetailsC.Cbranch[1]" />
+                            <label for="Cbranch_2">ECE</label>
+                            <input type="checkbox" id="branch_3" class="col s4" ng-model="groupDetailsC.Cbranch[2]" />
+                            <label for="Cbranch_3">Mechanical</label>
+                            <input type="checkbox" id="Cbranch_4" class="col s4" ng-model="groupDetailsC.Cbranch[3]" />
+                            <label for="Cbranch_4">All</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="s10 center">
+                        <a class="btn btn-large indigo lighten-1  waves-effect waves-green  center" ng-click="groupDetailsC.addClub()">Add</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>

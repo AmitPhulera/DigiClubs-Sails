@@ -105,7 +105,7 @@
                 <!-- {{postC.theapp}}images/profile/{{comment.user}}.jpg -->
                 <div class="comment-box" id="{{post.id}}">
                     <div class="comment" ng-repeat="comment in post.comments">
-                        <img src="{{post.user.photo}}" alt="" class="circle" style="height:42px;width:42px;margin-top:4px">
+                        <img src="http://digiclubs.westus.cloudapp.azure.com/images/profile/{{comment.user}}.jpg" alt="" class="circle" style="height:42px;width:42px;margin-top:4px">
                         <span class="commentor"><a href="#/users/{{comment.user}}">{{comment.name}}</a> </span>
                         <div class="comment_data">
                             {{comment.comment}}
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="card-action">
-                    <input type="text" style="width:80%;margin-bottom:0" ng-model="postC.comment[$index]"><span><a ng-click="postC.doComment(post.id,postC.comment[$index],$index,post.privacy,post.postedIn.id);"><i class="small material-icons">send</i></a></span>
+                    <input type="text" style="width:77%;margin-bottom:0" ng-model="postC.comment[$index]"><a ng-model="postC.commBtn[$index]" ng-class="{disabled: postC.btnDisabled}" class="btn" ng-click="postC.doComment(post.id,postC.comment[$index],$index,post.privacy,post.postedIn.id);"><i class="small material-icons">send</i></a>
                 </div>
             </div>
         </div>

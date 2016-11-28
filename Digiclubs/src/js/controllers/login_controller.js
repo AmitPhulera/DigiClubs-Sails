@@ -29,24 +29,34 @@ angular.module('DigiClubs.controllers.Login', [])
     /*****************************************************************************/
 
 
-
     var user = {};
+
+    sc.overlayShow = false;
+
     $scope.authenticate = function(provider) {
+      sc.overlayShow = true;
       $auth.authenticate(provider)
             .then(function(){
+                sc.overlayShow = false;
                 var usr=$auth.getPayload();
                 console.log('done');
                 console.log(usr);
                 Authenticate.setObject('user', usr);
                 $location.path('/posts');
+            })
+            .catch(function(){
+                sc.overlayShow = false;
+                console.log(usr);
             });
     };
 
     // LOGIN Function
     $scope.try_login = function() {
+        sc.overlayShow = true;
         console.log($scope.login);
         $http.post(theapp + 'auth/signin', $scope.login)
             .then(function a(response) {
+                    sc.overlayShow = false;
                     console.log('success');
                     console.log(response);
                     var auth = {
@@ -60,6 +70,7 @@ angular.module('DigiClubs.controllers.Login', [])
 
                 },
                 function b(response) {
+                    sc.overlayShow = false;
                     Materialize.toast(response.statusText, 4000);
                     console.log(response);
                 });

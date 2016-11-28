@@ -30,8 +30,12 @@ angular.module('DigiClubs.controllers.Profile', [])
     ***********************************************************************/
     var user = Authenticate.getObject('user');
     /*****************************************************************/
+    sc.updateUrl='#/editUser/'+user.id;
     sc.updateuser={};
     sc.profile = [];
+    sc.openModal=function(){
+        $('#editProfile').modal('open');
+    };
     sc.getProfile = function() {
         var data = { userId: user.id };
         console.log('here');

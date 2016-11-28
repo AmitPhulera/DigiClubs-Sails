@@ -33,7 +33,7 @@ angular.module('DigiClubs.controllers.Posts', [])
     var user = Authenticate.getObject('user');
     /*****************************************************************/
 
-
+    sc.btnDisabled = false;
     sc.post_list = [];
 
     io.socket.on('commentt', function(msg) {
@@ -41,7 +41,8 @@ angular.module('DigiClubs.controllers.Posts', [])
         angular.forEach(sc.post_list, function(value, key) {
 
             if (value.id == msg.post) {
-
+                var tmp=msg.user.id;
+                    msg.user=tmp;
                 value.comments.push(msg);
                 $scope.$apply();
             }
@@ -79,6 +80,8 @@ angular.module('DigiClubs.controllers.Posts', [])
     };
 
     sc.doComment = function(postId, comment, index, privacy, clubId) {
+        if (!comment || this.comment.length<=0)
+            return;
         comm = {
             data: {
                 comment: comment,
@@ -89,12 +92,15 @@ angular.module('DigiClubs.controllers.Posts', [])
             privacy: privacy,
             club: clubId
         };
+        sc.btnDisabled=true;
         console.log(comm);
         $http.post(theapp + 'comments/saveComment', { data: comm }).then(function(res) {
 
             sc.comment[index] = '';
             //$scope.comment[index] = '';
+            sc.btnDisabled=false;
         }, function(err) {
+            sc.btnDisabled=false;
             console.log(err);
         });
         console.log(postId);

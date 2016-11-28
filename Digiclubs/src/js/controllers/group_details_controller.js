@@ -57,11 +57,14 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         });
         //looking for new comments and appending to respective posts
         io.socket.on('comment', function(msg) {
-            console.log(msg);
+            
 
             angular.forEach(sc.clubPosts, function(value, key) {
                 if (value.id == msg.post) {
                     console.log('here');
+                    var tmp=msg.user.id;
+                    msg.user=tmp;
+                    console.log(msg);
                     value.comments.push(msg);
                     $scope.$apply();
 
@@ -93,8 +96,9 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         var user = Authenticate.getObject('user');
         /*****************************************************************/
 
-
+        sc.addEventUrl='#/addEvent/'+clubId;
         sc.comment = [];
+        sc.btnDisabled = false;
         var stream = ['CS', 'ECE', 'Mechanical', 'All'];
         sc.clubLead = "";
         sc.clubPosts = [];
@@ -110,18 +114,23 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
                 club: clubId,
                 privacy: privacy
             };
-
+            sc.btnDisabled=true;
+            if(comm.data.comment.length<=0)
+                return;
             $http.post(theapp + 'comments/saveComment', { data: comm }).then(function(res) {
                 console.log(res);
                 sc.comment[index] = '';
+                sc.btnDisabled=false;
             }, function(err) {
+                sc.btnDisabled=false;
                 console.log(err);
             });
             console.log(postId);
         };
 
         sc.insertPost = function() {
-
+            if(sc.post_content.length<=0)
+                return;
             var data = {
                 'data': {
                     'post': sc.post_content,
@@ -154,7 +163,7 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
             console.log(sc.event);
             $http.post(theapp + 'events/create', sc.event)
                 .then(function(res) {
-                    aterialize.toast(sc.event.name + 'added as new event.', 3000);
+                    Materialize.toast(sc.event.name + 'added as new event.', 3000);
                     console.log('success');
                     console.log(res);
                 }, function(err) {
@@ -180,7 +189,8 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         };
         sc.assign=function(id,name){
             sc.clubLead_id=id;
-            sc.clubLead=name;
+            sc.clubLead=name.toString();
+            console.log(id+' '+name);
             sc.nameListShow=0;
         };
         sc.listNames = function() {

@@ -1,0 +1,22 @@
+<div id="editProfile" class="row container" ng-controller="profileController as profileC">
+        <div class="card">
+            <h4 class="center nav green lighten-3 grey-text">Edit Stuff Here</h4>
+            <div class="row">
+                <form class="col s12" enctype="multipart/form-data" method="post">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="ChangeAbout" type="text" name="about" ng-model="profileC.updateuser.about" class="validate">
+                            <label for="ChangeAbout">About</label>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col s12">
+                            <input id="UploadAvatar" type="file" ngf-select ng-model="profileC.avatar" name="avatar" accept="image/*" ngf-max-size="2MB" ngf-model-invalid="errorFile">
+                            <button class="btn indigo btn-medium" ng-click="profileC.uploadavatar(profileC.avatar)">Upload</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

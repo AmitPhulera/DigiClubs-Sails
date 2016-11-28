@@ -1,19 +1,48 @@
-<div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">mode_edit</i>
-          <textarea id="suggestion" class="materialize-textarea"></textarea>
-          <label for="suggestion">Suggestions</label>
+<div ng-controller="feedbackController as feedbackC">
+<div class="row container">
+    <form >
+        <div class="card center" style="padding-left: 1rem;padding-right: 1rem; padding-bottom: 1rem;">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">thumb_up</i>
+                    <textarea ng-model="feedbackC.feedback.pros" id="pros" class="materialize-textarea"></textarea>
+                    <label for="pros">Pros</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">thumb_down</i>
+                    <textarea ng-model="feedbackC.feedback.cons" id="Cons" class="materialize-textarea"></textarea>
+                    <label for="Cons">Cons</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <textarea ng-model="feedbackC.feedback.suggestion" id="suggestion" class="materialize-textarea"></textarea>
+                    <label for="suggestion">Suggestions</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <p>Rate the UI</p>
+                    <p class="range-field">
+                        <input type="range" ng-model="feedbackC.feedback.rating_ui" id="rate_ui" min="0" max="10" value="0" />
+                    </p>
+                </div>
+                <div class="input-field col s12">
+                    <p>Rate the Performance</p>
+                    <p class="range-field">
+                        <input type="range" ng-model="feedbackC.feedback.rating_performance" id="rate_performance" min="0" max="10" value="0" />
+                    </p>
+                </div>
+                <div class="input-field col s12">
+                    <p>Rate the Usability</p>
+                    <p class="range-field">
+                        <input type="range" ng-model="feedbackC.feedback.rating_usability" id="rate_usability" min="0" max="10" value="0" />
+                    </p>
+                </div>
+            </div>
+            <button ng-click="feedbackC.store_feedback()" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-        <p>Rate this app</p>
-        <p class="range-field">
-          <input type="range" id="rate" min="0" max="10" value="0" />
-        </p>
-      </div>
-      </div>
     </form>
-  </div>
+</div>
+</div>
