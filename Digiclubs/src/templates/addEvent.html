@@ -1,47 +1,48 @@
-<div id="add_event" class="row container" ng-controller="groupDetailsController as groupDetailsC">
+<div class="container">
+    <div id="add_event" class="row " ng-controller="groupDetailsController as groupDetailsC">
         <div class="card">
             <h4 class="center nav green lighten-3 grey-text">Create An Event</h4>
             <div class="row">
-                <form class="col s12">
+                <form class="col s11">
                     <div class="row">
-                        <div class="input-field col s10 center">
+                        <div class="input-field col s10 offset-s1  center">
                             <input placeholder="Event Name" id="event_name" type="text" class="validate" ng-model="groupDetailsC.event.name">
-                            <label for="event_name">Event Name</label>
+                            <!-- <label for="event_name">Event Name</label> -->
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s10 center">
-                            <textarea id="event_details" class="materialize-textarea" ng-model="groupDetailsC.event.detail"></textarea>
-                            <label for="event_details">Event Details</label>
+                        <div class="input-field col s10 offset-s1 ">
+                            <textarea id="event_details" class="materialize-textarea" placehoder="Event Details" ng-model="groupDetailsC.event.detail"></textarea>
+                             <label for="event_details">Event Details</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s5 center">
+                        <div class="input-field col s10 offset-s1 center">
                             <input type="date" class="datepicker" ng-model="groupDetailsC.event.date">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s5 center">
+                        <div class="input-field col s10 offset-s1 center">
                             <input placeholder="PreRequisite" id="event_pre" type="text" class="validate" ng-model="groupDetailsC.event.prereq">
-                            <label for="event_pre">PreRequisite</label>
+                            <!-- <labe  l for="event_pre">PreRequisite</label> -->
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s3 center">
+                        <div class="input-field col s3 offset-s1 center">
                             <input placeholder="Total Seats" id="event_seats" type="number" class="validate" ng-model="groupDetailsC.event.seats">
-                            <label for="event_seats">Seats</label>
+                            <!-- <label for="event_seats">Seats</label> -->
                         </div>
                         <div class="input-field col s3 center">
                             <input placeholder="Total Cost" id="event_cost" type="number" class="validate" ng-model="groupDetailsC.event.cost">
-                            <label for="event_cost">Cost</label>
+                            <!-- <label for="event_cost">Cost</label> -->
                         </div>
                         <div class="input-field col s3 center">
                             <input placeholder="Duration" id="event_duration" type="number" class="validate" ng-model="groupDetailsC.event.duration">
-                            <label for="event_duration">Duration</label>
+<!--                             <label for="event_duration">Duration</label> -->
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field s10 center">
+                        <div class="input-field s10 offset-s1 center">
                             <div class="row">
                                 <input type="checkbox" id="branch_1" class="col s4" ng-model="groupDetailsC.branch[0]" />
                                 <label for="branch_1">CS</label>
@@ -55,12 +56,12 @@
                         </div>
                     </div>
                     <div class="row">
-                    <div class="s10 center">
-                        <a class="btn btn-large indigo lighten-1  waves-effect waves-green  center" ng-click="groupDetailsC.addEvent()">Add</a>
-                    </div>
+                        <div class="s10 center">
+                            <a class="btn btn-large indigo lighten-1  waves-effect waves-green  center" ng-click="groupDetailsC.addEvent()">Add</a>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
-        
     </div>
+</div>

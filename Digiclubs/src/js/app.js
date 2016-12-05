@@ -10,7 +10,8 @@ angular.module('DigiClubs', [
   'DigiClubs.controllers.Clubs',
   'DigiClubs.controllers.Events',
   'DigiClubs.controllers.Profile',
-  'DigiClubs.controllers.ProfileView'
+  'DigiClubs.controllers.ProfileView',
+  'DigiClubs.controllers.Feedback'
  ])
 
 .config(function($routeProvider,$authProvider) {
@@ -18,7 +19,7 @@ angular.module('DigiClubs', [
   $authProvider.facebook({
       clientId: 1164205113600754,
       name: 'facebook',
-      redirectUri: window.location.protocol + '//' + window.location.host+'/',
+      redirectUri:'http://localhost/', //window.location.origin+'/','http://localhost/'
       url: 'http://digiclubs.westus.cloudapp.azure.com/auth/facebook',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
       requiredUrlParams: ['display', 'scope'],
@@ -30,7 +31,7 @@ angular.module('DigiClubs', [
   });
   $authProvider.google({
       clientId: '565734768883-dlunqnt9i927rajtrep3berc7msninff.apps.googleusercontent.com',
-      redirectUri: window.location.protocol + '//' + window.location.host,
+      redirectUri: 'http://localhost:8000/',
       url: 'http://digiclubs.westus.cloudapp.azure.com/auth/google' ,
       authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
       

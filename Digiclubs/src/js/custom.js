@@ -6,3 +6,7 @@ $( document ).ready(function(){
     //$('.modal-trigger').leanModal();
     
 }); 
+document.addEventListener('deviceready', function(){
+    // Change the color
+    window.plugins.headerColor.tint("#3f51b5");
+}, false);

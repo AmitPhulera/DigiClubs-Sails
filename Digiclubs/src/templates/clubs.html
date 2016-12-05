@@ -8,9 +8,9 @@
       <p>{{club.member}} Members</p>
       <span>
                 <input id="UploadAvatar" type="file" ngf-select ng-model="club.avatar" name="avatar" accept="image/*" ngf-max-size="2MB" ngf-model-invalid="errorFile">
-                            <button ng-click="clubC.uploadavatar(club.avatar,club.club_id)">Upload</button>
+                            <button ng-click="clubC.uploadavatar(club.avatar,club.club_id)" ng-class="{disabled:clubC.isBtnDisabled}">Upload</button>
       </span>
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
     </li>
  </ul>
  </div>

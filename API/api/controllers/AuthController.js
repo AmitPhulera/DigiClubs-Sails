@@ -30,6 +30,7 @@ function createJWT(user) {
     var payload = {
         id: user.id,
         email:user.email,
+        name:user.name,
         iat: moment().unix(),
         exp: moment().add(14, 'days').unix()
     };
@@ -74,7 +75,7 @@ module.exports = {
             code: req.param('code'),
             client_id: '565734768883-dlunqnt9i927rajtrep3berc7msninff.apps.googleusercontent.com',
             client_secret: 'uoueTJ91o81uhdr3fQ6ZeOz0',
-            redirect_uri: 'http://localhost:8000',
+            redirect_uri: req.body.redirectUri,
             grant_type: 'authorization_code'
         };
         console.log(params);

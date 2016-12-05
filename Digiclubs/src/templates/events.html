@@ -12,7 +12,7 @@
       </span>
                         <span>
                 <input id="UploadAvatar" type="file" ngf-select ng-model="event.avatar" name="avatar" accept="image/*" ngf-max-size="2MB" ngf-model-invalid="errorFile">
-                            <button ng-click="eventsC.uploadavatar(event.avatar,event.id)">Upload</button>
+                            <button ng-click="eventsC.uploadavatar(event.avatar,event.id)" ng-class="{disabled:eventsC.isBtnDisabled}">Upload</button>
       </span>
                         <!-- <p><a href="#">Show More</a></p> -->
                     </div>

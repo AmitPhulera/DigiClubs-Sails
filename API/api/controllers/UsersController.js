@@ -16,7 +16,7 @@ module.exports = {
     list: function(req, res) {
         var uid = req.param('userId');
         console.log(req.allParams());
-        Roles.find({ 'user_id': uid }).populate('user_id', { select: ['name', 'id'] }).populate('club', { select: ['name', 'id'] }).exec(function(err, data) {
+        Roles.find({ 'user_id': uid }).populate('user_id', { select: ['name', 'id','photo'] }).populate('club', { select: ['name', 'id'] }).exec(function(err, data) {
             if (err)
                 return res.negotiate();
             console.log(data);

@@ -24,7 +24,7 @@ module.exports = {
 					console.log('adding to public');
 				}
 				console.log(newPost);
-				Posts.findOne({id:newPost.id}).populate('user',{select:['name','id']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,result){
+				Posts.findOne({id:newPost.id}).populate('user',{select:['name','id','photo']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,result){
 					if(err)
 						return res.negotiate();
 					console.log(result);

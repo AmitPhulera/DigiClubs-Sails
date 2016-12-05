@@ -166,5 +166,32 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-crosswalk-webview": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-crosswalk-webview@2.1.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-headercolor": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tomloprod/cordova-plugin-headercolor",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "phonegap-plugin-push": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-push@1.8.4"
+        },
+        "is_top_level": true,
+        "variables": {
+            "SENDER_ID": "565734768883"
+        }
     }
 }

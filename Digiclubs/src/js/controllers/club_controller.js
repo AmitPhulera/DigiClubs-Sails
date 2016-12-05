@@ -32,6 +32,7 @@ angular.module('DigiClubs.controllers.Clubs', [])
     /*****************************************************************/
 
     /*  Functions Calling Differnt API's */
+    sc.isBtnDisabled=false;
     sc.getClubs = function() {
         $http.get(theapp + "roles/list")
             .then(function(response) {
@@ -40,7 +41,7 @@ angular.module('DigiClubs.controllers.Clubs', [])
     };
 
     sc.uploadavatar = function(file,c_id)
-    {   
+    {   sc.isBtnDisabled=true;
         console.log(c_id +"in controller");
         var obj={
             url: theapp+'clubs/upload',
@@ -49,12 +50,14 @@ angular.module('DigiClubs.controllers.Clubs', [])
         };
         console.log(obj);
         file.upload = Upload.upload(obj);
-
+        
         file.upload.then(function(response) {
+            sc.isBtnDisabled=false;
             Materialize.toast('Successfully uploaded',1000);
             console.log(response);
         }, function(response) {
             if (response.status > 0){
+                sc.isBtnDisabled=false;
                 sc.errorMsg = response.status + ': ' + response.data;
                 console.log(sc.errorMsg);
             }

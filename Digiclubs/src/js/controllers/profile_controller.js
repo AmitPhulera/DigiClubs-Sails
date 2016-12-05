@@ -33,6 +33,7 @@ angular.module('DigiClubs.controllers.Profile', [])
     sc.updateUrl='#/editUser/'+user.id;
     sc.updateuser={};
     sc.profile = [];
+    sc.isBtnDisabled=false;
     sc.openModal=function(){
         $('#editProfile').modal('open');
     };
@@ -68,14 +69,18 @@ angular.module('DigiClubs.controllers.Profile', [])
             data: { userid: user.id, about:sc.updateuser.about, file: file }
             
         };
+        sc.isBtnDisabled=true;
         console.log(obj);
         file.upload = Upload.upload(obj);
 
         file.upload.then(function(response) {
             Materialize.toast('Successfully uploaded',1000);
+            sc.isBtnDisabled=false;
             console.log(response);
         }, function(response) {
             if (response.status > 0){
+                sc.isBtnDisabled=false;
+                Materialize.toast('Error Uploading File',1000);
                 sc.errorMsg = response.status + ': ' + response.data;
                 console.log(sc.errorMsg);
             }

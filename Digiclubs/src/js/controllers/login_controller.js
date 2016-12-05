@@ -46,7 +46,8 @@ angular.module('DigiClubs.controllers.Login', [])
             })
             .catch(function(){
                 sc.overlayShow = false;
-                console.log(usr);
+                Materialize.toast('Unable to Login !!',2000);
+                console.log();
             });
     };
 
