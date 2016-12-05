@@ -16,17 +16,13 @@ module.exports = {
     },
     listDetails: function(req, res) {
         var club = req.param('clubId');
-        console.log(req.allParams());
         Roles.find({ 'club': club }).populate('user_id', { select: ['name', 'id'] }).populate('club').exec(function(err, data) {
             if (err)
                 return res.negotiate();
-            console.log('reaching here');
-            console.log(data);
             res.ok(data);
         });
     },
     add:function(req,res){
-        console.log(req.allParams());
         var club={};
         club.name=req.param('name');
         club.detail=req.param('detail');

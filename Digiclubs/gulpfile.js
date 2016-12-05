@@ -20,15 +20,13 @@ var config = {
   // },
   vendor: {
     js: [
-
+      './bower_components/jquery/dist/jquery.min.js',
+      './bower_components/materialize/dist/js/materialize.min.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',
       './bower_components/ng-file-upload/ng-file-upload.min.js',
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
-      './bower_components/jquery/dist/jquery.min.js',
-      './bower_components/satellizer/dist/satellizer.min.js',
-      './bower_components/materialize/dist/js/materialize.min.js'
-      
+      './bower_components/satellizer/dist/satellizer.min.js'
     ],
 
     css: {
@@ -219,6 +217,15 @@ gulp.task('importCss', function () {
     .pipe(gulp.dest(path.join(config.dest, 'css')));
 });
 
+gulp.task('importSocket', function () {
+  gulp.src('./bower_components/sails.io.js/dist/sails.io.js')
+    .pipe(concat('sailsio.js'))
+    .pipe(ngAnnotate())
+    .pipe(uglify())
+    .pipe(gulp.dest(path.join(config.dest, 'socket')));
+});
+
+
 
 /*====================================================================
 =            Compile and minify js generating source maps            =
@@ -276,7 +283,7 @@ gulp.task('weinre', function() {
 ======================================*/
 
 gulp.task('build', function(done) {
-  var tasks = ['html', 'fonts', 'images','importCss', 'js'];
+  var tasks = ['html', 'fonts', 'images','importCss', 'js','importSocket'];
   seq('clean', tasks, done);
 });
 

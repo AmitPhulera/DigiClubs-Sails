@@ -12,26 +12,33 @@ module.exports = {
 	},
 	savePost:function(req,res){
 		var data=req.param('data');
+		
 		Posts.create(data).populate('user').exec(function(err,newPost){
 			if(err){
+				console.log(err)
 				return res.negotiate(err);
 			}
 				
-				console.log('here');
 				sails.sockets.join(req,data.postedIn);
 				if(newPost.privacy=='public'){
 					sails.sockets.join(req,'public');
 					console.log('adding to public');
+				}else{
+					sails.sockets.join(req,data.postedIn)
 				}
 				console.log(newPost);
 				Posts.findOne({id:newPost.id}).populate('user',{select:['name','id','photo']}).populate('postedIn',{select:['name','id']}).populate('comments').exec(function(err,result){
 					if(err)
 						return res.negotiate();
-					console.log(result);
-					sails.sockets.broadcast(data.postedIn,data.postedIn,result);
+					
+					//sails.sockets.broadcast(data.postedIn,data.postedIn,result);
 					if(newPost.privacy=="public"){
 						sails.sockets.broadcast('public','publicPost',result);
+						sails.sockets.broadcast(data.postedIn,data.postedIn,result);
 						console.log('broadcasted to public');
+					}else{
+						sails.sockets.broadcast(data.postedIn,data.postedIn,result);
+						console.log('broadcasted to private');
 					}
 					res.ok();
 				});

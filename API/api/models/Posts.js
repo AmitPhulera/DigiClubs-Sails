@@ -15,7 +15,7 @@ module.exports = {
 	    },
 	    privacy:{
 	    	type:'string',
-	    	enum: ['public','members', 'core']
+	    	enum: ['public','members', 'core','private']
 	    },
 	    branches:{
 	    	type:'string',

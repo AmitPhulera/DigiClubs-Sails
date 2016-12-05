@@ -19,7 +19,7 @@ angular.module('DigiClubs', [
   $authProvider.facebook({
       clientId: 1164205113600754,
       name: 'facebook',
-      redirectUri:'http://localhost/', //window.location.origin+'/','http://localhost/'
+      redirectUri:'http://localhost/',
       url: 'http://digiclubs.westus.cloudapp.azure.com/auth/facebook',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
       requiredUrlParams: ['display', 'scope'],

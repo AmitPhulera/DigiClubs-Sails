@@ -9,7 +9,6 @@ module.exports = {
 
 	upload: function(req,res)
 	{	var eventid = req.param('eventid');
-		//console.log(eventid+" in API");
 		req.file('file').upload({ dirname: sails.config.appPath+'/attachments/images/events/' , saveAs: eventid+'.jpg' }, function(err, files) {
             if (err)
                 return res.serverError(err);

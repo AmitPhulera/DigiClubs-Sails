@@ -1,7 +1,7 @@
 angular.module('DigiClubs.controllers.Main', [])
 
 .controller('MainController', function($scope, $location, $window, Authenticate, Server) {
-    io.sails.url = Server;
+    //io.sails.url = 'http://digiclubs.westus.cloudapp.azure.com';
     document.addEventListener("offline", onOffline, false);
     try{
     window.plugins.headerColor.tint("#3f51b5");

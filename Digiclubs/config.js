@@ -123,7 +123,7 @@ module.exports = function(config) {
    * @type {Array}
    */
 
-   config.vendor.js.push('./sails-socket-io.js');
+   //config.vendor.js.push('./bower_components/sails.io.js/dist/sails.io.js');
 
   /**
    * Vendor Fonts

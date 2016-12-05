@@ -11,9 +11,6 @@ module.exports = {
 		var rData=req.param('data');
 		var club=req.allParams();
 		
-		console.log(club);
-		console.log('*************************');
-		console.log(club.data.club);
 		Comments.create(rData.data).exec(function(err,result){
 			if(err)
 				return res.negotiate();

@@ -10,9 +10,7 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
             return;
         }
         /*****************************************************************/
-
         var clubId = $routeParams.club_id;
-
         /****************************************************************
         Master Object 'sc' use this to acess elements in every controller
         *****************************************************************/
@@ -22,7 +20,9 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         /****************************************************************
                     Sokcet Connection Shit
         *****************************************************************/
+        
         sc.connect = function() { //Subscribing user to the club's socket list 
+            //$('select').material_select();
             var id = {
                 'clubId': clubId
             };
@@ -82,6 +82,16 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
                 $scope.$apply();
             }
         });
+
+        io.socket.on('private', function(msg) {
+            console.log(msg);
+            if (msg.verb == 'created') {
+                console.log(msg.data);
+                sc.post_list.push(msg.data);
+                //console.log($scope.main.post_list);
+                $scope.$apply();
+            }
+        });
         /*****************************************************************/
 
         /******************************************************************************
@@ -102,6 +112,7 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         var stream = ['CS', 'ECE', 'Mechanical', 'All'];
         sc.clubLead = "";
         sc.clubPosts = [];
+        sc.priv = 'private';
         sc.nameListShow=1;
         sc.doComment = function(comment, index, postId, privacy) {
             comm = {
@@ -136,10 +147,10 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
                     'post': sc.post_content,
                     'postedIn': clubId,
                     'user': user.id,
-                    'privacy': 'public' //ToDO privacy to be changed
+                    'privacy': sc.priv //ToDO privacy to be changed
                 }
             };
-
+            console.log(data);
             io.socket.post(theapp + 'posts/savePost', data, function(err, response) {
                 if (err) {
                     console.log('err');
@@ -152,7 +163,6 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
             });
         };
         sc.addEvent = function() {
-
             branch = [];
             for (i = 0; i <= stream.length; i++) {
                 if (sc.branch[i])
