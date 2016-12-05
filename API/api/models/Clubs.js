@@ -26,7 +26,7 @@ module.exports = {
 		},
 	    photo:{
 	    	type: 'string',
-            defaultsTo: 'http://localhost:1337/images/clubs/default.jpg',
+            defaultsTo: './images/default_club.jpg',
             url: true
 	    },
 		reviews:{

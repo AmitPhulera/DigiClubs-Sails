@@ -3,7 +3,7 @@
         <div class="col s12 ">
             <div class="card collection">
                 <div class="card-content black-text collection-item avatar">
-                    <img src="{{profileC.profile.photo}}" alt="" class="circle">
+                    <img ng-src="{{profileC.profile.photo}}" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle">
                     <span class="card-title">{{profileC.profile.name}}</span>
                     <div class="user-details">
                         <p>Email:-{{profileC.profile.email}}</p>

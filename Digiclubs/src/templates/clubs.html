@@ -1,6 +1,6 @@
 <div ng-controller="clubController as clubC" ng-init="clubC.getClubs()"><ul class="collection">
     <li class="collection-item avatar" ng-repeat="club in clubC.clubs">
-      <img src={{club.club_photo}} alt="" class="circle">
+      <img ng-src={{club.club_photo}} alt="" onerror="if (this.src != './images/default_club.jpg') this.src = './images/default_club.jpg';" class="circle">
       <span class="title"><a href="#/clubs/{{club.club_id}}">{{club.clubname}}</a></span>
       <p>About:- {{club.clubdetails}}
       </p>

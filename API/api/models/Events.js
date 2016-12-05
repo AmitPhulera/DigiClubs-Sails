@@ -19,7 +19,7 @@ module.exports = {
 	    },
 	    photo:{
 	    	type: 'string',
-            defaultsTo: 'http://localhost:1337/images/events/default.jpg',
+            defaultsTo: './images/default_event.jpg',
             url: true
 	    },
 	    date:{

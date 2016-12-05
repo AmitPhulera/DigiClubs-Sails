@@ -74,7 +74,7 @@
         <div class="col s12" ng-repeat="post in groupDetailsC.clubPosts  | orderBy:'-createdAt' track by $index">
             <div class="card collection hoverable">
                 <div class="card-content black-text collection-item avatar">
-                    <img src="{{post.user.photo}}" alt="" class="circle">
+                    <img ng-src="{{post.user.photo}}" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle">
                     <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a>  </span>
                     <div class="divider"></div>
                     <div class="post">
@@ -83,7 +83,7 @@
                 </div>
                 <div class="comment-box" id="{{post.id}}">
                     <div class="comment" ng-repeat="comment in post.comments">
-                        <img src="http://digiclubs.westus.cloudapp.azure.com/images/profile/{{comment.user}}.jpg" alt="" class="circle" style="height:42px;width:42px;margin-top:4px">
+                        <img ng-src="http://digiclubs.westus.cloudapp.azure.com/images/profile/{{comment.user}}.jpg" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle" style="height:42px;width:42px;margin-top:4px">
                         <span class="commentor"><a href="#/users/{{comment.user}}">{{comment.name}}</a> </span>
                         <div class="comment_data">
                             {{comment.comment}}
