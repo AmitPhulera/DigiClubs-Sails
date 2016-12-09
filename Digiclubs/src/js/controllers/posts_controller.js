@@ -1,7 +1,7 @@
 
 angular.module('DigiClubs.controllers.Posts', [])
 
-.controller('PostsController', function(Authenticate, Server, $location, $http, $scope) {
+.controller('PostsController', function(Authenticate, Server, $location, $http,$scope) {
 
     /****************************************************************
                 Authentication Wali BAketi !!!
@@ -41,8 +41,8 @@ angular.module('DigiClubs.controllers.Posts', [])
         angular.forEach(sc.post_list, function(value, key) {
 
             if (value.id == msg.post) {
-                //var tmp=msg.user.id;
-                //    msg.user=tmp;
+                var tmp=msg.user.id;
+                   msg.user=tmp;
                 value.comments.push(msg);
                 $scope.$apply();
             }

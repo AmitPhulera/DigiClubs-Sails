@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en_US">
 
 <head>
     <meta charset="utf-8" />
@@ -15,6 +15,9 @@
         height: 24px;
     }
     
+#sidenav-overlay{
+    z-index:995;
+}
     .subscript {
         font-size: small;
     }
@@ -23,8 +26,9 @@
     <script src="socket/sailsio.js"></script>
     <script src="js/app.min.js"></script>
     <script type="text/javascript">
-    //io.sails.url = 'http://digiclubs.westus.cloudapp.azure.com';
-    io.sails.url="http://localhost:1337";
+    io.sails.url = 'http://digiclubs.westus.cloudapp.azure.com';
+    //io.sails.url="http://localhost:1337";
+
     </script>
 </head>
 
@@ -40,7 +44,7 @@
                   <i class="small material-icons">refresh</i>
                 </a>
                 </span>
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">list</i></a>
+                <a href="#/" data-activates="slide-out" class="button-collapse"><i class="material-icons">list</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#posts"><i class="material-icons">forum</i></a></li>
                     <li><a href="#clubs"><i class="material-icons">group</i></a></li>
@@ -49,7 +53,7 @@
                     <li><a href="#contact"><i class="material-icons">contact_mail</i></a></li>
                     <li><a href="" ng-click="inValidate()"><i class="material-icons">exit_to_app</i></a></li>
                 </ul>
-                <ul class="side-nav" id="mobile-demo">
+                <ul class="side-nav" id="slide-out">
                     <li style="height:40px"></li>
                     <li><a href="#posts"><i class="material-icons">forum</i>Posts</a></li>
                     <li><a href="#clubs"><i class="material-icons">group</i>Clubs</a></li>

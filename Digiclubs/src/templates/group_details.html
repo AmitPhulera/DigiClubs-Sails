@@ -34,18 +34,28 @@
         margin-top: .6rem;
     }
     
-    .commentor {
-        margin-left: 3.8rem;
-        margin-top: -3.0rem;
-        display: block;
-    }
     
     .comment_data {
         margin-left: 3.8rem;
     }
     
     .comment {
-        margin-top: 0.7rem;
+        margin-top: 1.7rem;
+    }
+    .post-date{
+        font-size: .65rem;
+    }
+    .commentor {
+        margin-left: 3.8rem;
+        margin-top: -4rem;
+        display: block;
+    }
+    
+    .comment-date {
+        font-size: .65rem;
+        margin-left: 3.8rem;
+        margin-bottom: .6rem;
+        display: block;
     }
     #post_div {
         margin: 10px;
@@ -76,6 +86,7 @@
             <div class="card-content black-text collection-item avatar">
                 <img ng-src="{{post.user.photo}}" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle">
                 <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a>  </span>
+                <h6 class="grey-text post-date">{{ post.createdAt| timeAgo }}</h6></p>
                 <div class="divider"></div>
                 <div class="post">
                     <p>{{post.post}}</p>
@@ -85,6 +96,7 @@
                 <div class="comment" ng-repeat="comment in post.comments">
                     <img ng-src="http://digiclubs.westus.cloudapp.azure.com/images/profile/{{comment.user}}.jpg" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle" style="height:42px;width:42px;margin-top:4px">
                     <span class="commentor"><a href="#/users/{{comment.user}}">{{comment.name}}</a> </span>
+                    <span class="grey-text comment-date">{{ comment.createdAt| timeAgo }}</span>
                     <div class="comment_data">
                         {{comment.comment}}
                     </div>

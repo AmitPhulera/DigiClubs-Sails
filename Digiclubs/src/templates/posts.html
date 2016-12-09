@@ -55,40 +55,31 @@
         margin-top: .6rem;
     }
     
-    .commentor {
-        margin-left: 3.8rem;
-        margin-top: -3.0rem;
-        display: block;
-    }
     
     .comment_data {
         margin-left: 3.8rem;
     }
     
     .comment {
-        margin-top: 0.7rem;
+        margin-top: 1.7rem;
+    }
+    .post-date{
+        font-size: .65rem;
+    }
+    .commentor {
+        margin-left: 3.8rem;
+        margin-top: -4rem;
+        display: block;
+    }
+    
+    .comment-date {
+        font-size: .65rem;
+        margin-left: 3.8rem;
+        margin-bottom: .6rem;
+        display: block;
     }
     </style>
     <div class="row">
-        <!-- <div class="col s12" ng-repeat="post in post_list track by $index">
-          <div class="card collection hoverable">
-            <div class="card-content black-text collection-item avatar">
-              <img src="images/a.jpg" alt="" class="circle">
-              <span ><a href="#/users/{{post.user.id}}">{{post.user.name}}</a> > <a href="#/clubs/{{post.postedIn.id}}">{{post.postedIn.name}}</a></span>
-              <div class="post">
-                <p>{{post.post}}</p>
-              </div>
-            </div>
-            <div class="comment-box">
-              <div class="comment">
-              <span ><a href="">Amit PHulera </a> Lorem ipsum ditis voluptate sunt, ullam qui beatae suscipit autem aliquid.</span></div>
-              <div class="comment"><p>Amit PHulera :- This is anothercomment </p></div>
-            </div>
-            <div class="card-action">
-              <input type="text" style="width:80%;margin-bottom:0" ng-model="comment"><span><i class="small material-icons">send</i></span>
-            </div>
-          </div>
-        </div> -->
         <div class="col s12" ng-repeat="post in postC.post_list | orderBy:'-createdAt' track by $index">
             <div class="card collection hoverable">
                 <div class="card-content black-text collection-item avatar">
@@ -97,16 +88,19 @@
                     <div class="chip right">
                         <a href="#/clubs/{{post.postedIn.id}}">{{post.postedIn.name}}</a>
                     </div>
+                    <p>
+                        <h6 class="grey-text post-date">{{ post.createdAt| timeAgo }}</h6></p>
                     <div class="divider"></div>
                     <div class="post">
                         <p>{{post.post}}</p>
                     </div>
                 </div>
-                <!-- {{postC.theapp}}images/profile/{{comment.user}}.jpg -->
+                <!-- {{postC.theapp}}images/profile/{{comment.user}}.jpg {{post.createdAt| timeago }} -->
                 <div class="comment-box" id="{{post.id}}">
                     <div class="comment" ng-repeat="comment in post.comments">
                         <img ng-src="http://digiclubs.westus.cloudapp.azure.com/images/profile/{{comment.user}}.jpg" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle" style="height:42px;width:42px;margin-top:4px">
                         <span class="commentor"><a href="#/users/{{comment.user}}">{{comment.name}}</a> </span>
+                        <span class="grey-text comment-date">{{ comment.createdAt| timeAgo }}</span>
                         <div class="comment_data">
                             {{comment.comment}}
                         </div>

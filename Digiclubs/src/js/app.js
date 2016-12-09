@@ -3,6 +3,7 @@ angular.module('DigiClubs', [
   'mobile-angular-ui',
   'ngFileUpload',
   'satellizer',
+  'yaru22.angular-timeago',
   'DigiClubs.controllers.Main',
   'DigiClubs.controllers.Login',
   'DigiClubs.controllers.Posts',
@@ -14,7 +15,7 @@ angular.module('DigiClubs', [
   'DigiClubs.controllers.Feedback'
  ])
 
-.config(function($routeProvider,$authProvider) {
+.config(function($routeProvider,$authProvider,timeAgoSettings) {
   $authProvider.tokenPrefix = '';
   $authProvider.facebook({
       clientId: 1164205113600754,
@@ -44,6 +45,7 @@ angular.module('DigiClubs', [
       oauthType: '2.0',
       popupOptions: { width: 452, height: 633 }
     });
+  
   $routeProvider.when('/', {templateUrl:'home.html',  reloadOnSearch: false})
   	.when('/posts', {templateUrl:'posts.html',  reloadOnSearch: false})
   	.when('/profile', {templateUrl:'profile.html',  reloadOnSearch: false})

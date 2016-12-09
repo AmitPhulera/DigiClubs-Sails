@@ -25,6 +25,8 @@ var config = {
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',
       './bower_components/ng-file-upload/ng-file-upload.min.js',
+      './bower_components/angular-timeago/dist/angular-timeago-core.min.js',
+      './bower_components/angular-timeago/src/languages/time-ago-language-en_US.js',
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
       './bower_components/satellizer/dist/satellizer.min.js'
     ],

@@ -1,6 +1,6 @@
 $( document ).ready(function(){
 	$(".button-collapse").sideNav({
-      menuWidth: 250, 
+      draggable: true,
       closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
     });
     //$('select').material_select();
