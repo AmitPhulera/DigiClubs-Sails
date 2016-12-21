@@ -30,6 +30,17 @@ module.exports = {
 				return res.ok();	
 			});
 		});
+	},
+	deleteComment:function(req,res)
+	{
+		var cid = req.param('cid');
+		console.log('api mei '+cid);
+		Comments.destroy({id:cid}).exec(function(err,result){
+			if(err)
+				return res.negotiate();
+			console.log('kuch hua');
+			return res.ok();
+		});
 	}
 };
 

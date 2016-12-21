@@ -66,7 +66,9 @@
     </style>
     <div id="post_div" class="z-depth-2">
         <div class="row" style="margin-bottom: 0;">
-            <a href="{{groupDetailsC.manageClub}}"><button class="admin admin btn blue lighten-3 right">Manage Club</button></a>
+            <a href="{{groupDetailsC.manageClub}}">
+                <button class="admin admin btn blue lighten-3 right">Manage Club</button>
+            </a>
             <div class="input-field col s12">
                 <textarea id="post_insert" class="materialize-textarea" ng-model="groupDetailsC.post_content"></textarea>
                 <label for="post_insert">Ventilate Your Bright Ideas...</label>
@@ -91,10 +93,9 @@
                 <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a>  
                 </span>
                 <div class="chip right">
-                        <a href="#/clubs/{{post.postedIn.id}}">{{post.privacy}}</a>
-                    </div>
+                    <a href="#/clubs/{{post.postedIn.id}}">{{post.privacy}}</a>
+                </div>
                 <h6 class="grey-text post-date">{{ post.createdAt| timeAgo }}</h6>
-                
                 <div class="divider"></div>
                 <div class="post">
                     <p>{{post.post}}</p>
@@ -105,6 +106,7 @@
                     <img ng-src="http://digiclubs.westus.cloudapp.azure.com/images/profile/{{comment.user}}.jpg" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle" style="height:42px;width:42px;margin-top:4px">
                     <span class="commentor"><a href="#/users/{{comment.user}}">{{comment.name}}</a> </span>
                     <span class="grey-text comment-date">{{ comment.createdAt| timeAgo }}</span>
+                    <button style="height: 2rem;width: 4rem; float: right; margin-right: 2rem; padding: inherit;" class="btn" ng-click="groupDetailsC.deleteCom(comment,post);">Delete</button>
                     <div class="comment_data">
                         {{comment.comment}}
                     </div>
@@ -119,5 +121,4 @@
     <div class="fixed-action-btn" style="bottom: 35px; right: 24px;">
         <a class="btn btn-floating btn-large  indigo darken-1 " href="#/addClub"><i class="material-icons">add_circle_outline</i></a>
     </div>
-   
 </div>

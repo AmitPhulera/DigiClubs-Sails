@@ -1,5 +1,5 @@
 angular.module('DigiClubs.controllers.GroupDetails', [])
-    .controller('groupDetailsController', function($scope, $http, $location,$window, $routeParams, Authenticate, Server) {
+    .controller('groupDetailsController', function($scope, $http, $location, $window, $routeParams, Authenticate, Server) {
 
         /****************************************************************
                 Authentication Wali BAketi !!!
@@ -109,8 +109,8 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         /*****************************************************************/
 
         sc.addEventUrl = '#/addEvent/' + clubId;
-        sc.addMembers='#/addMember/' + clubId;
-        sc.manageClub="#/manageClub/"+ clubId;
+        sc.addMembers = '#/addMember/' + clubId;
+        sc.manageClub = "#/manageClub/" + clubId;
         sc.comment = [];
         sc.btnDisabled = false;
         var stream = ['CS', 'ECE', 'Mechanical', 'All'];
@@ -124,8 +124,8 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         sc.hideCountDiv = 0;
         var memberObj = [];
         $scope.count = 0;
-        $scope.disabled=[0];
-        $scope.hideBtn=[1];
+        $scope.disabled = [0];
+        $scope.hideBtn = [1];
         sc.doComment = function(comment, index, postId, privacy) {
             comm = {
                 data: {
@@ -215,7 +215,7 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
             console.log(id + ' ' + name);
             sc.nameListShow = 0;
         };
-        sc.assignMember = function(id, name,count) {
+        sc.assignMember = function(id, name, count) {
                 var obj = {
                     user_id: id,
                     club: clubId
@@ -225,7 +225,7 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
                 memberObj.push(obj);
                 sc.nameListShow = 0;
 
-                $scope.disabled[count]=1;
+                $scope.disabled[count] = 1;
                 console.log(memberObj);
             }
             //List all the users to assign them postion of admin 
@@ -243,15 +243,15 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
                 });
 
         };
-        sc.removeFromMemberList=function(count){
-            console.log(memberObj);
-            $('#entry'+count).fadeOut();
-            
-            memberObj[count]=null;
-            console.log(memberObj);
+        sc.removeFromMemberList = function(count) {
+                console.log(memberObj);
+                $('#entry' + count).fadeOut();
 
-        }
-        //List out data of users that are not part of the specified club
+                memberObj[count] = null;
+                console.log(memberObj);
+
+            }
+            //List out data of users that are not part of the specified club
         sc.listPeople = function(memName) {
             $http.post(theapp + 'users/userSearch', { name: memName, club_id: clubId })
                 .then(function(res) {
@@ -265,22 +265,35 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
 
         };
 
-        sc.addMembersToClub=function(){
-            
-            var finalObj=[];
+        sc.addMembersToClub = function() {
+
+            var finalObj = [];
             for (var i = memberObj.length - 1; i >= 0; i--) {
-                if(memberObj[i]!=null)
+                if (memberObj[i] != null)
                     finalObj.push(memberObj[i]);
             }
-            $http.post(theapp + 'roles/addMembers', { members: finalObj})
+            $http.post(theapp + 'roles/addMembers', { members: finalObj })
                 .then(function(res) {
-                    Materialize.toast('Added '+res.data.length+' members.',3000,'',function(){
+                    Materialize.toast('Added ' + res.data.length + ' members.', 3000, '', function() {
                         $window.location.reload();
                     });
-                   console.log(res);
+                    console.log(res);
                 }, function(err) {
                     console.log(err);
                 });
-        }
+        };
+
+        sc.deleteCom = function(com_delete, posthavingcom) {
+            var cid = com_delete.id;
+            var pid = posthavingcom.id;
+             console.log('Comment id here :'+cid);
+             console.log('Post id here : '+pid);
+            //Never use $index as a parameter to delete stuff..index change for new data in scope.
+            $http.post(theapp + 'comments/deleteComment', { cid: cid }).then(function(response) {
+                sc.clubPosts[sc.clubPosts.indexOf(posthavingcom)].comments.splice(sc.clubPosts[sc.clubPosts.indexOf(posthavingcom)].comments.indexOf(com_delete),1)
+                Materialize.toast('Comment Deleted Successfully', 3000);
+            });
+
+        };
 
     });

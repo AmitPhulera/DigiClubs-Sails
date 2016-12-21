@@ -1,7 +1,6 @@
-
 angular.module('DigiClubs.controllers.Posts', [])
 
-.controller('PostsController', function(Authenticate, Server, $location, $http,$scope) {
+.controller('PostsController', function(Authenticate, Server, $location, $http, $scope) {
 
     /****************************************************************
                 Authentication Wali BAketi !!!
@@ -41,8 +40,8 @@ angular.module('DigiClubs.controllers.Posts', [])
         angular.forEach(sc.post_list, function(value, key) {
 
             if (value.id == msg.post) {
-                var tmp=msg.user.id;
-                   msg.user=tmp;
+                var tmp = msg.user.id;
+                msg.user = tmp;
                 value.comments.push(msg);
                 $scope.$apply();
             }
@@ -80,7 +79,7 @@ angular.module('DigiClubs.controllers.Posts', [])
     };
 
     sc.doComment = function(postId, comment, index, privacy, clubId) {
-        if (!comment || this.comment.length<=0)
+        if (!comment || this.comment.length <= 0)
             return;
         comm = {
             data: {
@@ -92,19 +91,31 @@ angular.module('DigiClubs.controllers.Posts', [])
             privacy: privacy,
             club: clubId
         };
-        sc.btnDisabled=true;
+        sc.btnDisabled = true;
         console.log(comm);
         $http.post(theapp + 'comments/saveComment', { data: comm }).then(function(res) {
 
             sc.comment[index] = '';
             //$scope.comment[index] = '';
-            sc.btnDisabled=false;
+            sc.btnDisabled = false;
         }, function(err) {
-            sc.btnDisabled=false;
+            sc.btnDisabled = false;
             console.log(err);
         });
         console.log(postId);
     };
 
-});
+    sc.deleteCom = function(com_delete, posthavingcom) {
+        var cid = com_delete.id;
+        var pid = posthavingcom.id;
+        // console.log('Comment id here :'+cid);
+        // console.log('Post id here : '+sc.post_list[sc.post_list.indexOf(posthavingcom)].comments.indexOf(com_delete));
+        //Never use $index as a parameter to delete stuff..index change for new data in scope.
+        $http.post(theapp + 'comments/deleteComment', { cid: cid }).then(function(response) {
+            sc.post_list[sc.post_list.indexOf(posthavingcom)].comments.splice(sc.post_list[sc.post_list.indexOf(posthavingcom)].comments.indexOf(com_delete), 1);
+            Materialize.toast('Comment Deleted Successfully', 3000);
+        });
 
+    };
+
+});
