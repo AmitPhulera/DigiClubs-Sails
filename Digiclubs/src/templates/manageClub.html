@@ -1,0 +1,29 @@
+<div class="row" ng-controller="groupDetailsController as groupDetailsC">
+<style>
+	.material-icons{
+		font-size:90px;
+	}
+</style>
+    <div class="col s12 m4">
+        <a href="{{groupDetailsC.addMembers}}">
+            <div class="card-panel green accent-2 center">
+                <i class="material-icons">add</i> <h4 class="white-text">Add Members</h4>
+            </div>
+        </a>
+    </div>
+    <div class="col s12 m4">
+        <a href="#/">
+            <div class="card-panel blue lighten-2 center">
+            <i class="material-icons">edit</i>
+                <h4 class="white-text">Edit Club Details</h4>
+            </div>
+        </a>
+    </div>
+    <div class="col s12 m4">
+        <a href="{{groupDetailsC.addEventUrl}}">
+            <div class="card-panel red lighten-4 center"><i class="material-icons">event</i>
+                <h4 class="white-text">Add Event</h4>
+            </div>
+        </a>
+    </div>
+</div>

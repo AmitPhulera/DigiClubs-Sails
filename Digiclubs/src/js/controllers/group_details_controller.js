@@ -1,5 +1,5 @@
 angular.module('DigiClubs.controllers.GroupDetails', [])
-    .controller('groupDetailsController', function($scope, $http, $location, $routeParams, Authenticate, Server) {
+    .controller('groupDetailsController', function($scope, $http, $location,$window, $routeParams, Authenticate, Server) {
 
         /****************************************************************
                 Authentication Wali BAketi !!!
@@ -20,9 +20,10 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         /****************************************************************
                     Sokcet Connection Shit
         *****************************************************************/
-        
+
         sc.connect = function() { //Subscribing user to the club's socket list 
             //$('select').material_select();
+            sc.addEventUrl = '#/addEvent/' + clubId;
             var id = {
                 'clubId': clubId
             };
@@ -57,13 +58,14 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         });
         //looking for new comments and appending to respective posts
         io.socket.on('comment', function(msg) {
-            
+
 
             angular.forEach(sc.clubPosts, function(value, key) {
                 if (value.id == msg.post) {
+                    console.log(msg);
                     console.log('here');
-                    var tmp=msg.user.id;
-                    msg.user=tmp;
+                    var tmp = msg.user.id;
+                    msg.user = tmp;
                     console.log(msg);
                     value.comments.push(msg);
                     $scope.$apply();
@@ -106,14 +108,24 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         var user = Authenticate.getObject('user');
         /*****************************************************************/
 
-        sc.addEventUrl='#/addEvent/'+clubId;
+        sc.addEventUrl = '#/addEvent/' + clubId;
+        sc.addMembers='#/addMember/' + clubId;
+        sc.manageClub="#/manageClub/"+ clubId;
         sc.comment = [];
         sc.btnDisabled = false;
         var stream = ['CS', 'ECE', 'Mechanical', 'All'];
         sc.clubLead = "";
+        sc.newMember = [];
         sc.clubPosts = [];
         sc.priv = 'private';
-        sc.nameListShow=1;
+        sc.nameListShow = 0;
+        sc.count = 0;
+        sc.memberCount = 0;
+        sc.hideCountDiv = 0;
+        var memberObj = [];
+        $scope.count = 0;
+        $scope.disabled=[0];
+        $scope.hideBtn=[1];
         sc.doComment = function(comment, index, postId, privacy) {
             comm = {
                 data: {
@@ -125,22 +137,22 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
                 club: clubId,
                 privacy: privacy
             };
-            sc.btnDisabled=true;
-            if(comm.data.comment.length<=0)
+            sc.btnDisabled = true;
+            if (comm.data.comment.length <= 0)
                 return;
             $http.post(theapp + 'comments/saveComment', { data: comm }).then(function(res) {
                 console.log(res);
                 sc.comment[index] = '';
-                sc.btnDisabled=false;
+                sc.btnDisabled = false;
             }, function(err) {
-                sc.btnDisabled=false;
+                sc.btnDisabled = false;
                 console.log(err);
             });
             console.log(postId);
         };
 
         sc.insertPost = function() {
-            if(sc.post_content.length<=0)
+            if (sc.post_content.length <= 0)
                 return;
             var data = {
                 'data': {
@@ -187,7 +199,7 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
                     branch.push(stream[i]);
             }
             sc.club.branches = branch;
-            sc.club.lead=sc.clubLead_id;
+            sc.club.lead = sc.clubLead_id;
             $http.post(theapp + 'clubs/add', sc.club)
                 .then(function(res) {
                     Materialize.toast(sc.club.name + 'added as new club', 3000);
@@ -197,19 +209,33 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
                     console.log(err);
                 });
         };
-        sc.assign=function(id,name){
-            sc.clubLead_id=id;
-            sc.clubLead=name.toString();
-            console.log(id+' '+name);
-            sc.nameListShow=0;
+        sc.assign = function(id, name) {
+            sc.clubLead_id = id;
+            sc.clubLead = name.toString();
+            console.log(id + ' ' + name);
+            sc.nameListShow = 0;
         };
+        sc.assignMember = function(id, name,count) {
+                var obj = {
+                    user_id: id,
+                    club: clubId
+                };
+                console.log(memberObj);
+                sc.newMember[count] = name.toString();
+                memberObj.push(obj);
+                sc.nameListShow = 0;
+
+                $scope.disabled[count]=1;
+                console.log(memberObj);
+            }
+            //List all the users to assign them postion of admin 
         sc.listNames = function() {
-            var auto=[];
+            var auto = [];
             console.log('check it out');
             $http.post(theapp + 'users/search', { name: sc.clubLead })
                 .then(function(res) {
-                    sc.nameList=res.data;
-                    sc.nameListShow=1;
+                    sc.nameList = res.data;
+                    sc.nameListShow = 1;
                     console.log('success');
                     console.log(res);
                 }, function(err) {
@@ -217,5 +243,44 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
                 });
 
         };
+        sc.removeFromMemberList=function(count){
+            console.log(memberObj);
+            $('#entry'+count).fadeOut();
+            
+            memberObj[count]=null;
+            console.log(memberObj);
+
+        }
+        //List out data of users that are not part of the specified club
+        sc.listPeople = function(memName) {
+            $http.post(theapp + 'users/userSearch', { name: memName, club_id: clubId })
+                .then(function(res) {
+                    sc.nameList = res.data;
+                    sc.nameListShow = 1;
+                    console.log('success');
+                    console.log(res);
+                }, function(err) {
+                    console.log(err);
+                });
+
+        };
+
+        sc.addMembersToClub=function(){
+            
+            var finalObj=[];
+            for (var i = memberObj.length - 1; i >= 0; i--) {
+                if(memberObj[i]!=null)
+                    finalObj.push(memberObj[i]);
+            }
+            $http.post(theapp + 'roles/addMembers', { members: finalObj})
+                .then(function(res) {
+                    Materialize.toast('Added '+res.data.length+' members.',3000,'',function(){
+                        $window.location.reload();
+                    });
+                   console.log(res);
+                }, function(err) {
+                    console.log(err);
+                });
+        }
 
     });

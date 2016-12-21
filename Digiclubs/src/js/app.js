@@ -3,6 +3,7 @@ angular.module('DigiClubs', [
   'mobile-angular-ui',
   'ngFileUpload',
   'satellizer',
+  
   'yaru22.angular-timeago',
   'DigiClubs.controllers.Main',
   'DigiClubs.controllers.Login',
@@ -56,6 +57,8 @@ angular.module('DigiClubs', [
     .when('/users/:user_id',{templateUrl:'profileView.html',reloadOnSearch:false})
     .when('/signup',{templateUrl:'signup.html',reloadOnSearch:false})
     .when('/addEvent/:club_id',{templateUrl:'addEvent.html',reloadOnSearch:false})
+    .when('/addMember/:club_id',{templateUrl:'addMember.html',reloadOnSearch:false})
+    .when('/manageClub/:club_id',{templateUrl:'manageClub.html',reloadOnSearch:false})
     .when('/addClub',{templateUrl:'addClub.html',reloadOnSearch:false})
     .when('/editUser/:user_id',{templateUrl:'editUser.html',reloadOnSearch:false});
 

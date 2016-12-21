@@ -34,7 +34,6 @@
         margin-top: .6rem;
     }
     
-    
     .comment_data {
         margin-left: 3.8rem;
     }
@@ -42,9 +41,11 @@
     .comment {
         margin-top: 1.7rem;
     }
-    .post-date{
+    
+    .post-date {
         font-size: .65rem;
     }
+    
     .commentor {
         margin-left: 3.8rem;
         margin-top: -4rem;
@@ -57,6 +58,7 @@
         margin-bottom: .6rem;
         display: block;
     }
+    
     #post_div {
         margin: 10px;
         padding: 10px;
@@ -64,6 +66,7 @@
     </style>
     <div id="post_div" class="z-depth-2">
         <div class="row" style="margin-bottom: 0;">
+            <a href="{{groupDetailsC.manageClub}}"><button class="admin admin btn blue lighten-3 right">Manage Club</button></a>
             <div class="input-field col s12">
                 <textarea id="post_insert" class="materialize-textarea" ng-model="groupDetailsC.post_content"></textarea>
                 <label for="post_insert">Ventilate Your Bright Ideas...</label>
@@ -84,9 +87,9 @@
     <div class="col s12" ng-repeat="post in groupDetailsC.clubPosts  | orderBy:'-createdAt' track by $index">
         <div class="card collection hoverable">
             <div class="card-content black-text collection-item avatar">
-                <img ng-src="{{post.user.photo}}" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle">
+                <img ng-src="{{post.user.photo}}" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle" />
                 <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a>  </span>
-                <h6 class="grey-text post-date">{{ post.createdAt| timeAgo }}</h6></p>
+                <h6 class="grey-text post-date">{{ post.createdAt| timeAgo }}</h6>
                 <div class="divider"></div>
                 <div class="post">
                     <p>{{post.post}}</p>
@@ -108,14 +111,8 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Adding a an event -->
-<div class="fixed-action-btn" style="bottom: 120px; right: 24px;">
-    <a class="btn btn-floating btn-large  indigo darken-1 " href="#/addClub"><i class="material-icons" data-target="add_club">add_circle_outline</i></a></li>
-</div>
-<div class="fixed-action-btn" tyle="bottom: 40px; right: 24px;">
-    <a class="btn btn-large btn-floating indigo darken-1 " href="{{groupDetailsC.addEventUrl}}" s><i class="material-icons" >note_add</i></a>
-</div>
-<!-- Add Event Modal Structure -->
-<!-- Modal for adding club -->
+    <div class="fixed-action-btn" style="bottom: 35px; right: 24px;">
+        <a class="btn btn-floating btn-large  indigo darken-1 " href="#/addClub"><i class="material-icons">add_circle_outline</i></a>
+    </div>
+   
 </div>

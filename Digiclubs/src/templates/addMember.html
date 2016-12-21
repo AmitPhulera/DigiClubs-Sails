@@ -1,0 +1,73 @@
+<div ng-controller="groupDetailsController as groupDetailsC" class="container">
+    <style>
+    .card-panel {
+        height: 80vh;
+        margin-top: 2rem;
+    }
+    
+    ul.collection {
+        width: 83.5%;
+    }
+    
+    .collection .collection-item.avatar {
+        min-height: 62px;
+        padding-left: 64px;
+        position: relative;
+    }
+    .collection .collection-item.avatar .circle {
+        left:0px;
+    }    
+    span.small-text{
+        font-size: 8px;
+    }
+    /* #people-dropdown{
+        display: none;
+    } */
+    </style>
+    <!--div ng-hide="groupDetailsC.hideCountDiv">
+        No. of members to add :-
+        <select name="member" ng-model="groupDetailsC.memberCount" class="browser-default">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br>groupDetailsC.hideCountDiv=1;
+        <button class="btn" ng-click="groupDetailsC.generateFields()">Go</button>
+        ng-hide="!groupDetailsC.hideCountDiv"
+    </div-->
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel">
+                <span class="card-title">Add Members To Club by their Name or Email</span>
+                <div class="input-field col s12" id="entry0">
+                    <input id="member" type="text" class="col s10" ng-model="groupDetailsC.newMember[0]" ng-keyup="(groupDetailsC.newMember[0].trim().length >= 2) && groupDetailsC.listPeople(groupDetailsC.newMember[0])" ng-disabled="disabled[0]">
+                    <label for="member">Name/Email</label>
+                    <div class="col s2" id="add0">
+                        <a style="cursor: pointer" selectmember><i class="material-icons small" style="margin-top:1.2rem">add</i></a>
+                    </div>
+                    <div class="col s2" id="cross0" style="display: none">
+                        <a style="cursor: pointer" ng-click=groupDetailsC.removeFromMemberList(0);><i class="material-icons small red-text" style="margin-top:1.2rem">close</i></a>
+                    </div>
+                </div>
+                <div id="newMembers" ></div>
+                <div id="people-dropdown" ng-show="groupDetailsC.nameListShow" ng-hide="groupDetailsC.newMember[count].length==0">
+                <ul class="collection col"  style="left: .8rem;margin-top: -1.48rem;">
+                    <li class="collection-item avatar" ng-repeat="list in groupDetailsC.nameList | filter:groupDetailsC.newMember[count]" style="cursor: pointer" ng-click="groupDetailsC.assignMember(list.id,list.name,count)">
+                        <img src="{{list.photo}}" alt="" class="circle">
+                        <span class="center">{{list.name}}</span>
+                        <div class="divider"></div>
+                        <span class="small-text">{{list.email}}</span>
+                    </li>
+                </ul>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <button class="btn indigo lighten-1" ng-click="groupDetailsC.addMembersToClub()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
