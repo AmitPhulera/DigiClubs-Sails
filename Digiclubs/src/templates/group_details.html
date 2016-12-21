@@ -88,8 +88,13 @@
         <div class="card collection hoverable">
             <div class="card-content black-text collection-item avatar">
                 <img ng-src="{{post.user.photo}}" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle" />
-                <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a>  </span>
+                <span><a href="#/users/{{post.user.id}}">{{post.user.name}}</a>  
+                </span>
+                <div class="chip right">
+                        <a href="#/clubs/{{post.postedIn.id}}">{{post.privacy}}</a>
+                    </div>
                 <h6 class="grey-text post-date">{{ post.createdAt| timeAgo }}</h6>
+                
                 <div class="divider"></div>
                 <div class="post">
                     <p>{{post.post}}</p>
