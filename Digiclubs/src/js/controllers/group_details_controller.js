@@ -45,6 +45,7 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
 
                 console.log(response.data);
                 sc.clubPosts = response.data;
+                sc.clubPosts.userid = user.id;
             });
 
 

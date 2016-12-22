@@ -71,6 +71,7 @@ angular.module('DigiClubs.controllers.Posts', [])
         $http.get(theapp + 'posts/listPublicPosts').then(function(response) {
             console.log(response.data);
             sc.post_list = response.data;
+            sc.post_list.userid = user.id;
 
         }, function(error) {
             console.log('error');
