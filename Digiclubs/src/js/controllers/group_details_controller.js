@@ -287,13 +287,27 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
         sc.deleteCom = function(com_delete, posthavingcom) {
             var cid = com_delete.id;
             var pid = posthavingcom.id;
-             console.log('Comment id here :'+cid);
-             console.log('Post id here : '+pid);
             //Never use $index as a parameter to delete stuff..index change for new data in scope.
             $http.post(theapp + 'comments/deleteComment', { cid: cid }).then(function(response) {
-                sc.clubPosts[sc.clubPosts.indexOf(posthavingcom)].comments.splice(sc.clubPosts[sc.clubPosts.indexOf(posthavingcom)].comments.indexOf(com_delete),1)
+                sc.clubPosts[sc.clubPosts.indexOf(posthavingcom)].comments.splice(sc.clubPosts[sc.clubPosts.indexOf(posthavingcom)].comments.indexOf(com_delete), 1)
                 Materialize.toast('Comment Deleted Successfully', 3000);
             });
+
+        };
+
+        sc.deletePost = function(post_delete) {
+            var pid = post_delete.id;
+            console.log('Delete post having id :' + pid);
+            //casspost : comment associated with the post
+            var casspost = [];
+            post_delete.comments.forEach(function(entry) {
+                casspost.push(entry.id);
+            });
+            $http.post(theapp + 'posts/deletePost', { casspost: casspost, pid: pid }).then(function(response) {
+                sc.clubPosts.splice(sc.clubPosts.indexOf(post_delete), 1);
+                Materialize.toast('Post Deleted Successfully', 3000);
+            });
+
 
         };
 
