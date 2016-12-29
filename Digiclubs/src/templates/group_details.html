@@ -63,6 +63,18 @@
         margin: 10px;
         padding: 10px;
     }
+    
+    .delete-button {
+        height: 1.5rem;
+        width: 3rem;
+        float: right;
+        margin-top: -2rem;
+        margin-right: 2rem;
+        padding: inherit;
+        font-size: x-small;
+        text-align: center;
+        line-height: inherit;
+    }
     </style>
     <div id="post_div" class="z-depth-2">
         <div class="row" style="margin-bottom: 0;">
@@ -99,6 +111,7 @@
                 <div class="divider"></div>
                 <div class="post">
                     <p>{{post.post}}</p>
+                    <button ng-if="post.user.id==groupDetailsC.clubPosts.userid" class="delete-button btn" ng-click="groupDetailsC.deletePost(post);">Delete</button>
                 </div>
             </div>
             <div class="comment-box" id="{{post.id}}">
@@ -106,7 +119,7 @@
                     <img ng-src="http://digiclubs.westus.cloudapp.azure.com/images/profile/{{comment.user}}.jpg" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle" style="height:42px;width:42px;margin-top:4px">
                     <span class="commentor"><a href="#/users/{{comment.user}}">{{comment.name}}</a> </span>
                     <span class="grey-text comment-date">{{ comment.createdAt| timeAgo }}</span>
-                    <button ng-if="comment.user==groupDetailsC.clubPosts.userid"style="height: 2rem;width: 4rem; float: right; margin-right: 2rem; padding: inherit;" class="btn" ng-click="groupDetailsC.deleteCom(comment,post);">Delete</button>
+                    <button ng-if="comment.user==groupDetailsC.clubPosts.userid" class="delete-button btn" ng-click="groupDetailsC.deleteCom(comment,post);">Delete</button>
                     <div class="comment_data">
                         {{comment.comment}}
                     </div>

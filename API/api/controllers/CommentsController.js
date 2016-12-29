@@ -1,4 +1,3 @@
-
 /**
  * CommentsController
  *
@@ -7,41 +6,35 @@
  */
 
 module.exports = {
-	saveComment:function(req,res){
-		var rData=req.param('data');
-		var club=req.allParams();
-		
-		Comments.create(rData.data).exec(function(err,result){
-			if(err)
-				return res.negotiate();
-			Comments.findOne({id:result.id}).populate('user',{select:['name','id']}).exec(function(err,data){
-				if(err)
-					return res.negotiate();
-				if(club.data.privacy=="public"){
-					console.log('sending comment to club '+club.data.club);
-					sails.sockets.broadcast(club.data.club,'comment',data);
-					console.log('public ');
-					sails.sockets.broadcast('public','commentt',data);
-				}
-				else{
-					console.log('private post');
-					sails.sockets.broadcast(club.data.club,'comment',data);
-				}
-				return res.ok();	
-			});
-		});
-	},
-	deleteComment:function(req,res)
-	{
-		var cid = req.param('cid');
-		console.log('api mei '+cid);
-		Comments.destroy({id:cid}).exec(function(err,result){
-			if(err)
-				return res.negotiate();
-			console.log('kuch hua');
-			return res.ok();
-		});
-	}
+    saveComment: function(req, res) {
+        var rData = req.param('data');
+        var club = req.allParams();
+
+        Comments.create(rData.data).exec(function(err, result) {
+            if (err)
+                return res.negotiate();
+            Comments.findOne({ id: result.id }).populate('user', { select: ['name', 'id'] }).exec(function(err, data) {
+                if (err)
+                    return res.negotiate();
+                if (club.data.privacy == "public") {
+                    console.log('sending comment to club ' + club.data.club);
+                    sails.sockets.broadcast(club.data.club, 'comment', data);
+                    console.log('public ');
+                    sails.sockets.broadcast('public', 'commentt', data);
+                } else {
+                    console.log('private post');
+                    sails.sockets.broadcast(club.data.club, 'comment', data);
+                }
+                return res.ok();
+            });
+        });
+    },
+    deleteComment: function(req, res) {
+        var cid = req.param('cid');
+        Comments.destroy({ id: cid }).exec(function(err, result) {
+            if (err)
+                return res.negotiate();
+            return res.ok();
+        });
+    }
 };
-
-

@@ -79,6 +79,18 @@
         margin-bottom: .6rem;
         display: block;
     }
+    
+    .delete-button {
+        height: 1.5rem;
+        width: 3rem;
+        float: right;
+        margin-top: -2rem;
+        margin-right: 2rem;
+        padding: inherit;
+        font-size: x-small;
+        text-align: center;
+        line-height: inherit;
+    }
     </style>
     <div class="row">
         <div class="col s12" ng-repeat="post in postC.post_list | orderBy:'-createdAt' track by $index">
@@ -94,6 +106,7 @@
                     <div class="divider"></div>
                     <div class="post">
                         <p>{{post.post}}</p>
+                        <button ng-if="postC.post_list.userid==post.user.id" class="delete-button btn" ng-click="postC.deletePost(post);">Delete</button>
                     </div>
                 </div>
                 <!-- {{postC.theapp}}images/profile/{{comment.user}}.jpg {{post.createdAt| timeago }} -->
@@ -102,7 +115,7 @@
                         <img ng-src="http://digiclubs.westus.cloudapp.azure.com/images/profile/{{comment.user}}.jpg" onerror="if (this.src != './images/default_user.jpg') this.src = './images/default_user.jpg';" alt="" class="circle" style="height:42px;width:42px;margin-top:4px">
                         <span class="commentor"><a href="#/users/{{comment.user}}">{{comment.name}}</a> </span>
                         <span class="grey-text comment-date">{{ comment.createdAt| timeAgo }}</span>
-                        <button ng-if="comment.user==postC.post_list.userid" class="btn" style="height: 2rem;width: 4rem; float: right; margin-right: 2rem; padding: inherit;" class="btn" ng-click="postC.deleteCom(comment,post);">Delete</button>
+                        <button ng-if="comment.user==postC.post_list.userid" class="delete-button btn" ng-click="postC.deleteCom(comment,post);">Delete</button>
                         <div class="comment_data">
                             {{comment.comment}}
                         </div>
