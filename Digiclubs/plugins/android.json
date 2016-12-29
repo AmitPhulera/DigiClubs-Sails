@@ -71,6 +71,13 @@
             "XWALK_MODE": "embedded",
             "XWALK_MULTIPLEAPK": "true",
             "PACKAGE_NAME": "com.digiclubs.app"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "565734768883",
+            "PACKAGE_NAME": "com.digiclubs.app"
+        },
+        "cordova-plugin-headercolor": {
+            "PACKAGE_NAME": "com.digiclubs.app"
         }
     },
     "dependent_plugins": {
