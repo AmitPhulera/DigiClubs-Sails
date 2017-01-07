@@ -182,9 +182,10 @@ angular.module('DigiClubs.controllers.GroupDetails', [])
                     branch.push(stream[i]);
             }
             sc.event.branch = branch;
-            sc.clubs = clubId;
+            sc.event.clubs = clubId;
             console.log(sc.event);
-            $http.post(theapp + 'events/create', sc.event)
+            var event={event:sc.event};
+            $http.post(theapp + 'events/create', event)
                 .then(function(res) {
                     Materialize.toast(sc.event.name + 'added as new event.', 3000);
                     console.log('success');

@@ -20,7 +20,7 @@ module.exports = {
 	    photo:{
 	    	type: 'string',
             defaultsTo: './images/default_event.jpg',
-            url: true
+            
 	    },
 	    date:{
 	    	type:'datetime'

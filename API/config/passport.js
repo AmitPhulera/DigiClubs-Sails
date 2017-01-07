@@ -78,7 +78,7 @@ function _onJwtStrategyAuth(payload, next) {
   console.log('here broda');
   return next(null, user, {});
   });
-}
+} 
 /* passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,

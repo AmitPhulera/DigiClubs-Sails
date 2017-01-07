@@ -3,8 +3,20 @@
  *
  * @description :: Server-side logic for managing events
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
- */
+ 
+var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
+            to: n,
+            notification: {
+                title: 'Notification',
+                body: 'This is check'
+            },
 
+            data: { //you can send only notification or only data(or include both)
+                my_key: 'my value',
+                my_another_key: 'my another value'
+            }
+        };
+*/
 module.exports = {
 
 	upload: function(req,res)
@@ -24,6 +36,31 @@ module.exports = {
                     });
             });
         });
-	}
+	},
+    create:function(req,res)
+    {
+        var event=req.param('event');
+        Events.create(event).exec(function(err,data){
+            if(err)
+                return res.serverError(err);
+            notification={title:data.name,body:"A New Event For You "};
+            data={
+                url:'./#/events/'+data.id
+            };
+            
+            fcmObj={
+                to:'digiclubs',
+                notification:this.notification,
+                data:this.data
+            };
+            console.log(fcmObj);
+            PushService.send(fcmObj,function(){
+                return res.ok(data);
+            });
+
+            
+        });
+    }
 };
 
+ 

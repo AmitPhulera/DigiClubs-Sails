@@ -30,12 +30,12 @@ module.exports.policies = {
   AuthController: {
         '*': ['isAuthenticated'],
         '*': true
-    }
+    }//,
   
-    // PostsController:{
-    //   '*': ['isAuthenticated'],
+   // PostsController:{
+   //     '*': ['isAuthenticated'],
       
-    // }
+   // }
 
   /***************************************************************************
   *                                                                          *

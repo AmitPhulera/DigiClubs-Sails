@@ -33,6 +33,9 @@ module.exports = {
         about:{
             type: 'string'
         },
+        pushReigstarionId:{
+            type:'string'
+        },
         toJSON: function () {
             var obj = this.toObject();
             delete obj.password;
